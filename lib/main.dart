@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_note/constans/constans.dart';
+import 'package:my_note/models/note_model.dart';
 import 'package:my_note/views/notes_view.dart';
 
 import 'constans/colors.dart';
@@ -12,6 +13,7 @@ void main() async {
 
   await Hive.initFlutter();
   await Hive.openBox(notesBox);
+  Hive.registerAdapter(NoteModelAdapter());
 
   runApp(const MyApp());
 }
