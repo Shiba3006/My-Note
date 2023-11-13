@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_note/views/search_view.dart';
+import 'package:my_note/views/setting_view.dart';
 
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -10,7 +11,11 @@ class CustomSliverAppBar extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: 220,
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return const SettingView();
+          }));
+        },
         icon: const Icon(
           Icons.settings,
         ),
