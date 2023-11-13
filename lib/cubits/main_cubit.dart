@@ -10,8 +10,9 @@ part 'main_state.dart';
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainInitialState());
 
-  void addNote(NoteModel noteModel) {
 
+
+  void addNote(NoteModel noteModel) {
     emit(MainLoadingState());
     Hive.box<NoteModel>(notesBox)
         .add(noteModel)
