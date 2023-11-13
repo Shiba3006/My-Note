@@ -52,10 +52,21 @@ class NoteItem extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(
                 end: 20.0,
                 bottom: 15.0,
+                start: 30,
               ),
-              child: Text(
-                'Jan 11, 2024',
-                style: Theme.of(context).textTheme.bodySmall,
+              child: Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.clock,
+                    size: 18,
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                  Spacer(),
+                  Text(
+                    'Jan 11, 2024',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
               ),
             ),
           ],

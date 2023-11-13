@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
 
-class EditNoteViewBody extends StatefulWidget {
-  const EditNoteViewBody({super.key});
+class AddNoteViewBody extends StatefulWidget {
+  const AddNoteViewBody({super.key});
 
   @override
-  State<EditNoteViewBody> createState() => _EditNoteViewBodyState();
+  State<AddNoteViewBody> createState() => _AddNoteViewBodyState();
 }
 
-class _EditNoteViewBodyState extends State<EditNoteViewBody> {
+class _AddNoteViewBodyState extends State<AddNoteViewBody> {
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return    const Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 24,
       ),
@@ -24,14 +23,15 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           children: [
             SizedBox(height: 50,),
             CustomAppBar(
-              icon: FontAwesomeIcons.check,
-              title: 'Edit Note',
+              icon: FontAwesomeIcons.penToSquare,
+              title: 'Add Note',
             ),
             SizedBox(
               height: 16,
             ),
             CustomTextField(
               hint: 'title',
+              maxLine: 1,
             ),
             SizedBox(
               height: 16,

@@ -4,6 +4,7 @@ import 'package:my_note/cubits/main_cubit.dart';
 import 'package:my_note/models/note_model.dart';
 import 'package:my_note/views/notes_view.dart';
 
+
 import 'constants/colors.dart';
 import 'constants/constants.dart';
 import 'package:bloc/bloc.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          scaffoldBackgroundColor: primaryColor[50],
           fontFamily: 'Poppins',
           colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
           useMaterial3: true,
