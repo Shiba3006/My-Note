@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/views/search_view.dart';
 import 'package:my_note/views/setting_view.dart';
+
+import '../../cubits/main_cubit.dart';
 
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -8,43 +11,50 @@ class CustomSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      expandedHeight: 220,
-      leading: IconButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context){
-            return const SettingView();
-          }));
-        },
-        icon: const Icon(
-          Icons.settings,
-        ),
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return const SearchView();
-            }));
-          },
-          icon: const Icon(
-              Icons.search,
-            size: 30,
+    return BlocConsumer<MainCubit, MainState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return SliverAppBar(
+          expandedHeight: 220,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const SettingView();
+              }));
+            },
+            icon: const Icon(
+              Icons.settings,
+            ),
           ),
-        ),
-      ],
-      centerTitle: true,
-      pinned: true,
-      backgroundColor: Colors.purple,
-      flexibleSpace: const FlexibleSpaceBar(
-        centerTitle: true,
-        title: Text(
-          'NOTES',
-          style: TextStyle(
-            fontSize: 18,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const SearchView();
+                }));
+              },
+              icon: const Icon(
+                Icons.search,
+                size: 30,
+              ),
+            ),
+          ],
+          centerTitle: true,
+          pinned: true,
+          backgroundColor: MainCubit
+              .get(context)
+              .primaryColor,
+          flexibleSpace: const FlexibleSpaceBar(
+            centerTitle: true,
+            title: Text(
+              'NOTES',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

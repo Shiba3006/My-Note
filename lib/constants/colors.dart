@@ -1,3 +1,3 @@
 import 'package:flutter/material.dart';
 
-const primaryColor = Colors.purpleAccent;
+Color primaryColor = Colors.purpleAccent;

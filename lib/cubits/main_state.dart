@@ -12,3 +12,7 @@ class MainFailureState extends MainState {
 
   MainFailureState(this.err);
 }
+
+
+class ChangeAppColorSuccessState extends MainState {}
+class GetAppColorSuccessState extends MainState {}

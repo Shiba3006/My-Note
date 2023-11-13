@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
+
 
 
 
@@ -17,10 +17,10 @@ class CustomButton extends StatelessWidget {
       children: [
         Expanded(
           child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor:
-              MaterialStateProperty.resolveWith((states) => primaryColor[100]),
-            ),
+            // style: ButtonStyle(
+            //   backgroundColor:
+            //   MaterialStateProperty.resolveWith((states) => primaryColor[100]),
+            // ),
             onPressed: onPressed,
             child:  Text(
               text,

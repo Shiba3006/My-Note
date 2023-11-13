@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_note/cubits/main_cubit.dart';
 import 'package:my_note/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
@@ -14,7 +15,7 @@ class NoteItem extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.purpleAccent,
+          color: MainCubit.get(context).primaryColor,
           borderRadius: BorderRadius.circular(14),
         ),
         child: Column(
