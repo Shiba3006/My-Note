@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_note/widgets/notes_list_view.dart';
 
 import 'custom_app_bar.dart';
@@ -14,7 +15,10 @@ class NotesViewBody extends StatelessWidget {
           SizedBox(
             height: 40,
           ),
-          CustomAppBar(),
+          CustomAppBar(
+            title: 'Notes',
+            icon: FontAwesomeIcons.magnifyingGlass,
+          ),
           Expanded(
               child: NotesListView(),
           ),
