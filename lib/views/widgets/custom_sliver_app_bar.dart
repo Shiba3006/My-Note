@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_note/views/search_view.dart';
 
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -16,7 +17,11 @@ class CustomSliverAppBar extends StatelessWidget {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return const SearchView();
+            }));
+          },
           icon: const Icon(
               Icons.search,
             size: 30,

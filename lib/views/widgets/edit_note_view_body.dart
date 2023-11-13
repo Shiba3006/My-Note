@@ -15,28 +15,29 @@ class EditNoteViewBody extends StatefulWidget {
 class _EditNoteViewBodyState extends State<EditNoteViewBody> {
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(
+    return Padding(
+      padding: const EdgeInsets.symmetric(
         horizontal: 24,
       ),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 50,),
+            const SizedBox(height: 50,),
             CustomAppBar(
+              onPressed: (){},
               icon: FontAwesomeIcons.check,
               title: 'Edit Note',
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            CustomTextField(
+            const CustomTextField(
               hint: 'title',
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            CustomTextField(
+            const CustomTextField(
               hint: 'content',
               maxLine: 23,
             ),
