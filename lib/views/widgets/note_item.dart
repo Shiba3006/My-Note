@@ -8,15 +8,16 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => EditNoteView()));
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const EditNoteView()));
       },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.purpleAccent,
           borderRadius: BorderRadius.circular(14),
         ),
-        child:  Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Padding(
@@ -28,18 +29,18 @@ class NoteItem extends StatelessWidget {
                 title: Text(
                   'The title',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 24.0,
-                  ),
+                        fontSize: 24.0,
+                      ),
                 ),
-                subtitle:  Text(
+                subtitle: Text(
                   'The sub title The sub title The sub title The sub title ',
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    fontSize: 20,
-                    color: Colors.black.withOpacity(.6),
-                  ),
+                        fontSize: 20,
+                        color: Colors.black.withOpacity(.6),
+                      ),
                 ),
                 trailing: IconButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   icon: const Icon(
                     FontAwesomeIcons.trash,
                     size: 26.0,

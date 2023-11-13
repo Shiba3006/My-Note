@@ -1,15 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:my_note/constans/constans.dart';
+import 'package:my_note/cubits/main_cubit.dart';
 import 'package:my_note/models/note_model.dart';
 import 'package:my_note/views/notes_view.dart';
 
-import 'constans/colors.dart';
+import 'constants/colors.dart';
+import 'constants/constants.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubits/bloc_observer.dart';
 
 
 void main() async {
+  Bloc.observer = MyBlocObserver();
 
   await Hive.initFlutter();
   await Hive.openBox(notesBox);
@@ -23,14 +27,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Poppins',
-        colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
-        useMaterial3: true,
+    return BlocProvider(
+      create: (context) => MainCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'Poppins',
+          colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
+          useMaterial3: true,
+        ),
+        home: const NotesView(),
       ),
-      home: const NotesView(),
     );
   }
 }

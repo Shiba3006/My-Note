@@ -12,13 +12,14 @@ class NotesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.symmetric(vertical: 16),
-      child: ListView.builder(
+      child: ListView.separated(
         padding: EdgeInsets.zero,
         physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) => const Padding(
-          padding: EdgeInsetsDirectional.symmetric(vertical: 4.0),
-          child: NoteItem(),
+        itemBuilder: (context, index) => const NoteItem(),
+        separatorBuilder: (context, index) => const SizedBox(
+            height: 8,
         ),
+        itemCount: 10,
       ),
     );
   }
