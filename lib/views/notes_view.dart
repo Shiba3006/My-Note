@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../widgets/add_note_bottom_bheet.dart';
 import '../widgets/notes_view_body.dart';
 
 class NotesView extends StatelessWidget {
@@ -10,7 +11,16 @@ class NotesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: (){},
+          onPressed: (){
+            showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(26),
+              ),
+                context: context,
+                builder: (context) {
+                  return const AddNoteBottomSheet();
+                });
+          },
         child: const Icon(
           FontAwesomeIcons.plus,
         ),
@@ -19,6 +29,8 @@ class NotesView extends StatelessWidget {
     );
   }
 }
+
+
 
 
 
