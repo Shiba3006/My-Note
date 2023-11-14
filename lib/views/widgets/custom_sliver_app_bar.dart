@@ -14,13 +14,12 @@ class CustomSliverAppBar extends StatelessWidget {
     return BlocConsumer<MainCubit, MainState>(
       listener: (context, state) {},
       builder: (context, state) {
+        var cubit = MainCubit.get(context);
         return SliverAppBar(
           expandedHeight: 220,
           leading: IconButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const SettingView();
-              }));
+              cubit.navigateTo(context, const SettingView());
             },
             icon: const Icon(
               Icons.settings,
@@ -29,9 +28,7 @@ class CustomSliverAppBar extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const SearchView();
-                }));
+                cubit.navigateTo(context, const SearchView());
               },
               icon: const Icon(
                 Icons.search,

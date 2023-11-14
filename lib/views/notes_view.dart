@@ -14,14 +14,14 @@ class NotesView extends StatelessWidget {
     return BlocConsumer<MainCubit, MainState>(
       listener: (context, state) {},
       builder: (context, state) {
+        var cubit = MainCubit.get(context);
         return Scaffold(
           floatingActionButton: FloatingActionButton(
             child: const Icon(
               FontAwesomeIcons.plus,
             ),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AddNoteView()));
+              cubit.navigateTo(context, const AddNoteView());
             },
           ),
           body: const NotesViewBody(),

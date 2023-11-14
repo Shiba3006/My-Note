@@ -35,11 +35,6 @@ class MainCubit extends Cubit<MainState> {
     emit(ChangeAppColorSuccessState());
   }
 
-  Color getPrimaryColor (){
-    emit(GetAppColorSuccessState());
-    return primaryColor;
-  }
-
   void pickColor(BuildContext context) {
     showDialog(
       context: context,
@@ -66,5 +61,14 @@ class MainCubit extends Cubit<MainState> {
         );
       },
     );
+  }
+
+  void navigateTo (BuildContext context, Widget widget){
+    try {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+      emit(NavigateToSuccessState());
+    } on Exception catch (err) {
+      emit(NavigateToSuccessFailure(err.toString()));
+    }
   }
 }

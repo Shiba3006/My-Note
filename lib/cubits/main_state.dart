@@ -15,4 +15,10 @@ class MainFailureState extends MainState {
 
 
 class ChangeAppColorSuccessState extends MainState {}
-class GetAppColorSuccessState extends MainState {}
+
+class NavigateToSuccessState extends MainState {}
+class NavigateToSuccessFailure extends MainState {
+  final String err;
+
+  NavigateToSuccessFailure(this.err);
+}
