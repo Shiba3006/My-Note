@@ -8,10 +8,10 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = MainCubit.get(context);
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const EditNoteView()));
+        cubit.navigateTo(context, const EditNoteView());
       },
       child: Container(
         decoration: BoxDecoration(
@@ -62,7 +62,7 @@ class NoteItem extends StatelessWidget {
                     size: 18,
                     color: Colors.black.withOpacity(.5),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     'Jan 11, 2024',
                     style: Theme.of(context).textTheme.bodySmall,
