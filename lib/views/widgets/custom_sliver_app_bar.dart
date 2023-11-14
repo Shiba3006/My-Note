@@ -40,7 +40,7 @@ class CustomSliverAppBar extends StatelessWidget {
           pinned: true,
           backgroundColor: MainCubit
               .get(context)
-              .primaryColor,
+              .currentColor,
           flexibleSpace: const FlexibleSpaceBar(
             centerTitle: true,
             title: Text(

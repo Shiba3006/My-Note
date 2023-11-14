@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:my_note/constants/colors.dart';
 
 import '../constants/constants.dart';
 import '../models/note_model.dart';
@@ -14,7 +15,7 @@ part 'main_state.dart';
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainInitialState());
 
-  Color primaryColor = Colors.green;
+  Color currentColor = Colors.indigoAccent;
 
   static MainCubit get(context) => BlocProvider.of(context);
 
@@ -31,7 +32,7 @@ class MainCubit extends Cubit<MainState> {
   }
 
   void changeAppColor ({required Color color}){
-    primaryColor = color ;
+    currentColor = color ;
     emit(ChangeAppColorSuccessState());
   }
 

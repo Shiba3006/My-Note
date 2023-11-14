@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
-
-
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.onPressed, required this.text});
 
@@ -16,7 +11,8 @@ class CustomButton extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: ElevatedButton(
+          child:
+          ElevatedButton(
             // style: ButtonStyle(
             //   backgroundColor:
             //   MaterialStateProperty.resolveWith((states) => primaryColor[100]),

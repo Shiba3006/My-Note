@@ -5,7 +5,6 @@ import 'package:my_note/views/widgets/custom_button.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class SettingViewBody extends StatefulWidget {
   const SettingViewBody({super.key});
 
@@ -14,7 +13,6 @@ class SettingViewBody extends StatefulWidget {
 }
 
 class _SettingViewBodyState extends State<SettingViewBody> {
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainState>(
@@ -23,21 +21,15 @@ class _SettingViewBodyState extends State<SettingViewBody> {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
                 height: 50,
               ),
-              CustomButton(
-                onPressed: () {},
-                text: 'Choose app color',
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              Container(
+              Container( // color circle to show the picker color.
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: MainCubit.get(context).primaryColor,
+                  color: MainCubit.get(context).currentColor,
                 ),
                 width: 120,
                 height: 120,
@@ -45,13 +37,11 @@ class _SettingViewBodyState extends State<SettingViewBody> {
               const SizedBox(
                 height: 32,
               ),
-              ElevatedButton(
+              CustomButton(
                 onPressed: () {
                   MainCubit.get(context).pickColor(context);
                 },
-                child: const Text(
-                  'Pick color',
-                ),
+                text: 'Pick color',
               ),
             ],
           ),
@@ -59,6 +49,4 @@ class _SettingViewBodyState extends State<SettingViewBody> {
       },
     );
   }
-
-
 }

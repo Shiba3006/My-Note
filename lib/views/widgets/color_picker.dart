@@ -20,7 +20,9 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
         return BlockPicker(
           pickerColor: MainCubit
               .get(context)
-              .primaryColor,
+              .currentColor,
+          // another type
+
           // enableAlpha: false,
           // labelTypes: [],
           availableColors: const [
@@ -46,6 +48,8 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
         );
       },
     );
+
+    // another type.
     // ColorPicker(
     //   pickerColor: color,
     //   // enableAlpha: false,
