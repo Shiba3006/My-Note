@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
+
 import 'note_item.dart';
 
 class NotesListView extends StatelessWidget {
   const NotesListView({super.key});
-
-  /// TODO : Make colors
-  final colors = const []; // لبناء الالوان
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +13,10 @@ class NotesListView extends StatelessWidget {
       child: ListView.separated(
         padding: EdgeInsets.zero,
         physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) => const NoteItem(),
+        itemBuilder: (context, index) =>
+            NoteItem(),
         separatorBuilder: (context, index) => const SizedBox(
-            height: 8,
+          height: 8,
         ),
         itemCount: 10,
       ),

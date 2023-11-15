@@ -10,15 +10,21 @@ class SearchViewBody extends StatefulWidget {
 }
 
 class _SearchViewBodyState extends State<SearchViewBody> {
+  String? searchText;
   @override
   Widget build(BuildContext context) {
-    return  const Padding(
-      padding: EdgeInsets.all(8.0),
+    return  Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          SizedBox(height: 50,),
-          CustomTextField(hint: 'Search....',),
-          Expanded(
+          const SizedBox(height: 50,),
+          CustomTextField(
+            onSaved: (value){
+              searchText = value;
+            },
+            hint: 'Search....',
+          ),
+          const Expanded(
               child: NotesListView(),
           ),
         ],

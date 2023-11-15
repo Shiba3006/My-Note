@@ -3,8 +3,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:my_note/constants/colors.dart';
+
 
 import '../constants/constants.dart';
 import '../models/note_model.dart';
@@ -15,21 +14,52 @@ part 'main_state.dart';
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainInitialState());
 
-  Color currentColor = Colors.indigoAccent;
-
   static MainCubit get(context) => BlocProvider.of(context);
 
-  void addNote(NoteModel noteModel) {
-    emit(MainLoadingState());
-    Hive.box<NoteModel>(notesBox)
-        .add(noteModel)
+  Color currentColor = Colors.indigoAccent;
+
+  NoteModel? noteModel;
+
+  void addNote() {
+    emit(AddNoteLoadingState());
+        myBox
+        .add(noteModel!)
         .then((value) {
-          emit(MainSuccessState());
+      emit(AddNoteSuccessState());
+      print(myBox.values);
     })
         .catchError((err) {
-      emit(MainFailureState(err.toString()));
+      emit(AddNoteFailureState(err.toString()));
     });
   }
+
+  List<NoteModel>? noteNotesList;
+
+  void putData ({
+    required String title,
+    required String subTitle,
+    required String date,
+    required int color,
+}){
+    emit(PutDataLoadingState());
+    noteModel = NoteModel(title: title, subTitle: subTitle, date: date, color: color);
+    myBox.put(noteModel!.title, noteModel!).then((value) {
+      emit(PutDataSuccessState());
+      //addNote();
+      print(noteModel.toString());
+    }).catchError((err){
+      emit(PutDataFailureState(err.toString()));
+    });
+  }
+
+  void getNotesList (){
+    noteNotesList = myBox.values.toList();
+    emit(GetNoteSuccessState());
+    print('========================${noteNotesList!.length}');
+    print('========================${noteNotesList!.toString()}');
+    print('========================${noteModel.toString()}');
+  }
+
 
   void changeAppColor ({required Color color}){
     currentColor = color ;

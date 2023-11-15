@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hint,  this.maxLine = 1, this.onSaved});
+  const CustomTextField({super.key, required this.hint,  this.maxLine = 1,required this.onSaved});
 
   final String hint;
   final int maxLine;
