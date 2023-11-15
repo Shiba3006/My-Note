@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_note/cubits/main_cubit.dart';
+import 'package:my_note/models/note_model.dart';
 
 
 import 'custom_app_bar.dart';
@@ -40,12 +41,13 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      cubit.putData(
+                      cubit.addNote(NoteModel(
                           title: title!,
                           subTitle: subTitle!,
                           date: DateTime.now().toString(),
-                          color: 55,
-                      );
+                          color: 1312,
+                      ));
+                      cubit.getNotes();
                     } else {
                       autoValidateMode = AutovalidateMode.always;
                     }
