@@ -49,7 +49,7 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          cubit.addNote(NoteModel(
+                          cubit.addNote(notesModel:  NoteModel(
                             title: title!,
                             subTitle: subTitle!,
                             date: DateTime.now().toString(),

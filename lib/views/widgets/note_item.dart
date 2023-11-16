@@ -44,7 +44,9 @@ class NoteItem extends StatelessWidget {
                       ),
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    cubit.deleteNote(index: index);
+                  },
                   icon: const Icon(
                     FontAwesomeIcons.trash,
                     size: 26.0,

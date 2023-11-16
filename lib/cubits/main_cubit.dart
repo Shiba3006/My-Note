@@ -18,7 +18,7 @@ class MainCubit extends Cubit<MainState> {
 
   List<NoteModel> noteNotesList = [];
 
-  void addNote(NoteModel notesModel)  {
+  void addNote({required NoteModel notesModel})  {
     emit(AddNoteLoadingState());
         myBox.put(notesModel.title, notesModel).then((value) {
           emit(AddNoteSuccessState());
@@ -57,6 +57,15 @@ class MainCubit extends Cubit<MainState> {
     }).catchError((err){
       emit(AddNoteFailureState(err.toString()));
       //print(err.toString());
+    });
+  }
+
+  void deleteNote ({required int index}){
+    emit(DeleteNoteLoadingState());
+    myBox.deleteAt(index).then((value) {
+      emit(DeleteNoteSuccessState());
+    }).catchError((err){
+      emit(DeleteNoteFailureState(err.toString()));
     });
   }
 

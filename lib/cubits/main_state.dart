@@ -32,6 +32,15 @@ class UpdateNoteFailureState extends MainState {
   UpdateNoteFailureState(this.err);
 }
 
+// delete note
+class DeleteNoteLoadingState extends MainState {}
+class DeleteNoteSuccessState extends MainState {}
+class DeleteNoteFailureState extends MainState {
+  final String err;
+
+  DeleteNoteFailureState(this.err);
+}
+
 class ChangeAppColorSuccessState extends MainState {}
 
 class NavigateToSuccessState extends MainState {}
