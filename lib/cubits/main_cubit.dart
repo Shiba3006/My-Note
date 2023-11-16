@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
 import '../models/note_model.dart';
-import '../views/widgets/color_picker.dart';
 
 part 'main_state.dart';
 
@@ -34,7 +33,6 @@ class MainCubit extends Cubit<MainState> {
     try {
       noteNotesList = myBox.values.toList();
       emit(GetNoteSuccessState());
-      //print('=========================${noteNotesList[0].date.toString()}');
     } on Exception catch (err) {
       emit(GetNoteFailureState(err.toString()));
     }
@@ -72,34 +70,6 @@ class MainCubit extends Cubit<MainState> {
   void changeAppColor ({required Color color}){
     currentColor = color ;
     emit(ChangeAppColorSuccessState());
-  }
-
-  void pickColor(BuildContext context) { /// TODO move to widget.
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text(' Pick your color: '),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const BuildColorPicker(),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  'Select',
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
   }
 
   void navigateTo (BuildContext context, Widget widget){
