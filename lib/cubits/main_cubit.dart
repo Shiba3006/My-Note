@@ -39,23 +39,26 @@ class MainCubit extends Cubit<MainState> {
       emit(GetNoteFailureState(err.toString()));
     }
   }
- /// TODO UPDATE METHOD
-  // void updateNote({
-  //   required int index,
-  //   required String title,
-  //   required String subTitle,
-  //   required String date,
-  //   required int color,
-  // })  {
-  //   emit(UpdateNoteLoadingState());
-  //   myBox.putAt(index, value).then((value) {
-  //     emit(AddNoteSuccessState());
-  //     getNotes();
-  //   }).catchError((err){
-  //     emit(AddNoteFailureState(err.toString()));
-  //     //print(err.toString());
-  //   });
-  // }
+
+  void updateNote({
+    required int index,
+    required String title,
+    required String subTitle,
+    required String date,
+    required int color,
+  })  {
+    emit(UpdateNoteLoadingState());
+    myBox.putAt(
+      index,
+      NoteModel(title: title, subTitle: subTitle, date: date, color: color),
+    ).then((value) {
+      emit(AddNoteSuccessState());
+      getNotes();
+    }).catchError((err){
+      emit(AddNoteFailureState(err.toString()));
+      //print(err.toString());
+    });
+  }
 
   void changeAppColor ({required Color color}){
     currentColor = color ;

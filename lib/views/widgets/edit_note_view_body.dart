@@ -45,6 +45,13 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
+                        cubit.updateNote(
+                            index: widget.index,
+                            title: title!,
+                            subTitle: subTitle!,
+                            date: DateTime.now().toString(),
+                            color: 144,
+                        );
                       } else {
                         autoValidateMode = AutovalidateMode.always;
                       }
