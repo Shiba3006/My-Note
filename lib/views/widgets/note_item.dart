@@ -5,15 +5,16 @@ import 'package:my_note/cubits/main_cubit.dart';
 import 'package:my_note/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key });
+  const NoteItem({super.key, required this.index});
 
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     var cubit = MainCubit.get(context);
     return GestureDetector(
       onTap: () {
-        cubit.navigateTo(context, const EditNoteView());
+        cubit.navigateTo(context, EditNoteView(index: index,));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -30,13 +31,13 @@ class NoteItem extends StatelessWidget {
               ),
               child: ListTile(
                 title: Text(
-                  'title',
+                  cubit.noteNotesList[index].title,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: 24.0,
                       ),
                 ),
                 subtitle: Text(
-                  'The sub title The sub title The sub title The sub title ',
+                  cubit.noteNotesList[index].subTitle,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontSize: 20,
                         color: Colors.black.withOpacity(.6),
@@ -66,7 +67,7 @@ class NoteItem extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    'Jan 11, 2024',
+                    cubit.noteNotesList[index].date,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],

@@ -22,9 +22,10 @@ class MainCubit extends Cubit<MainState> {
     emit(AddNoteLoadingState());
         myBox.put(notesModel.title, notesModel).then((value) {
           emit(AddNoteSuccessState());
+          getNotes();
         }).catchError((err){
           emit(AddNoteFailureState(err.toString()));
-          print(err.toString());
+          //print(err.toString());
         });
   }
 
@@ -33,37 +34,28 @@ class MainCubit extends Cubit<MainState> {
     try {
       noteNotesList = myBox.values.toList();
       emit(GetNoteSuccessState());
-      print('=========================${noteNotesList[0].date.toString()}');
+      //print('=========================${noteNotesList[0].date.toString()}');
     } on Exception catch (err) {
       emit(GetNoteFailureState(err.toString()));
     }
   }
-
-//   void putData ({
-//     required String title,
-//     required String subTitle,
-//     required String date,
-//     required int color,
-// }){
-//     emit(PutDataLoadingState());
-//     noteModel = NoteModel(title: title, subTitle: subTitle, date: date, color: color);
-//     myBox.put(noteModel!.title, noteModel!).then((value) {
-//       emit(PutDataSuccessState());
-//       //addNote();
-//       print(noteModel.toString());
-//     }).catchError((err){
-//       emit(PutDataFailureState(err.toString()));
-//     });
-//   }
-
-  // void getNotesList (){
-  //   noteNotesList = myBox.values.toList();
-  //   emit(GetNoteSuccessState());
-  //   print('========================${noteNotesList!.length}');
-  //   print('========================${noteNotesList!.toString()}');
-  //   print('========================${noteModel.toString()}');
+ /// TODO UPDATE METHOD
+  // void updateNote({
+  //   required int index,
+  //   required String title,
+  //   required String subTitle,
+  //   required String date,
+  //   required int color,
+  // })  {
+  //   emit(UpdateNoteLoadingState());
+  //   myBox.putAt(index, value).then((value) {
+  //     emit(AddNoteSuccessState());
+  //     getNotes();
+  //   }).catchError((err){
+  //     emit(AddNoteFailureState(err.toString()));
+  //     //print(err.toString());
+  //   });
   // }
-
 
   void changeAppColor ({required Color color}){
     currentColor = color ;

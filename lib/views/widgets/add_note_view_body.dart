@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_note/cubits/main_cubit.dart';
 import 'package:my_note/models/note_model.dart';
@@ -23,63 +24,71 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
   @override
   Widget build(BuildContext context) {
     var cubit = MainCubit.get(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24,
-      ),
-      child: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          autovalidateMode: autoValidateMode,
-          child: Container(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 50,
+    return BlocConsumer<MainCubit, MainState>(
+      listener: (context, state) {
+        if(state is GetNoteSuccessState) {
+          Navigator.pop(context);
+        }
+      },
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 24,
+          ),
+          child: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              autovalidateMode: autoValidateMode,
+              child: Container(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    CustomAppBar(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          cubit.addNote(NoteModel(
+                            title: title!,
+                            subTitle: subTitle!,
+                            date: DateTime.now().toString(),
+                            color: 1312,
+                          ));
+                        } else {
+                          autoValidateMode = AutovalidateMode.always;
+                        }
+                      },
+                      icon: FontAwesomeIcons.penToSquare,
+                      title: 'Add Note',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                      onSaved: (value) {
+                        title = value;
+                      },
+                      hint: 'title',
+                      maxLine: 1,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                      onSaved: (value) {
+                        subTitle = value;
+                      },
+                      hint: 'content',
+                      maxLine: 20,
+                    ),
+                  ],
                 ),
-                CustomAppBar(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      cubit.addNote(NoteModel(
-                          title: title!,
-                          subTitle: subTitle!,
-                          date: DateTime.now().toString(),
-                          color: 1312,
-                      ));
-                      cubit.getNotes();
-                    } else {
-                      autoValidateMode = AutovalidateMode.always;
-                    }
-                  },
-                  icon: FontAwesomeIcons.penToSquare,
-                  title: 'Add Note',
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                CustomTextField(
-                  onSaved: (value) {
-                    title = value;
-                  },
-                  hint: 'title',
-                  maxLine: 1,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                CustomTextField(
-                  onSaved: (value) {
-                    subTitle = value;
-                  },
-                  hint: 'content',
-                  maxLine: 20,
-                ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

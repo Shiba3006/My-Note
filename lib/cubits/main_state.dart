@@ -23,13 +23,13 @@ class GetNoteFailureState extends MainState {
   GetNoteFailureState(this.err);
 }
 
-// put data
-class PutDataLoadingState extends MainState {}
-class PutDataSuccessState extends MainState {}
-class PutDataFailureState extends MainState {
+// update note
+class UpdateNoteLoadingState extends MainState {}
+class UpdateNoteSuccessState extends MainState {}
+class UpdateNoteFailureState extends MainState {
   final String err;
 
-  PutDataFailureState(this.err);
+  UpdateNoteFailureState(this.err);
 }
 
 class ChangeAppColorSuccessState extends MainState {}

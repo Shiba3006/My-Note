@@ -23,7 +23,7 @@ class _CustomSliverListState extends State<CustomSliverList> {
           sliver: SliverList.separated(
             itemCount: myBox.length,
             separatorBuilder: (context, index) => const SizedBox(height: 12),
-            itemBuilder: (context, index) => NoteItem(),
+            itemBuilder: (context, index) => NoteItem(index: index),
           ),
         );
       },
