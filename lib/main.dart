@@ -1,10 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_note/cubits/main_cubit.dart';
 import 'package:my_note/views/notes_view.dart';
-
 import 'cashe_helper.dart';
 import 'constants/constants.dart';
 import 'cubits/bloc_observer.dart';

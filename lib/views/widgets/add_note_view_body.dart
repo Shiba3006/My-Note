@@ -16,6 +16,7 @@ class AddNoteViewBody extends StatefulWidget {
 }
 
 class _AddNoteViewBodyState extends State<AddNoteViewBody> {
+
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
