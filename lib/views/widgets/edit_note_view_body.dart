@@ -7,7 +7,8 @@ import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
 
 class EditNoteViewBody extends StatefulWidget {
-  const EditNoteViewBody({super.key,required this.index});
+  const EditNoteViewBody({super.key, required this.index});
+
   final int index;
 
   @override
@@ -15,7 +16,6 @@ class EditNoteViewBody extends StatefulWidget {
 }
 
 class _EditNoteViewBodyState extends State<EditNoteViewBody> {
-
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
@@ -24,7 +24,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainState>(
       listener: (context, state) {
-        if(state is GetNoteSuccessState) {
+        if (state is GetNoteSuccessState) {
           Navigator.pop(context);
         }
       },
@@ -40,17 +40,19 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               autovalidateMode: autoValidateMode,
               child: Column(
                 children: [
-                  const SizedBox(height: 50,),
+                  const SizedBox(
+                    height: 50,
+                  ),
                   CustomAppBar(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
                         cubit.updateNote(
-                            index: widget.index,
-                            title: title!,
-                            subTitle: subTitle!,
-                            date: DateTime.now().toString(),
-                            color: 144,
+                          index: widget.index,
+                          title: title!,
+                          subTitle: subTitle!,
+                          date: cubit.customizeDateFormat(),
+                          color: 144,
                         );
                       } else {
                         autoValidateMode = AutovalidateMode.always;

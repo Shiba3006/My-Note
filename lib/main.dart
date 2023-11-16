@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MainCubit()..getNotes(),
+      create: (context) => MainCubit()..getNotes()..customizeDateFormat(),
       child: BlocConsumer<MainCubit, MainState>(
         listener: (context, state) {
         },

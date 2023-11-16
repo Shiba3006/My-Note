@@ -1,8 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-
-
 import '../constants/constants.dart';
 import '../models/note_model.dart';
 
@@ -17,18 +14,18 @@ class MainCubit extends Cubit<MainState> {
 
   List<NoteModel> noteNotesList = [];
 
-  void addNote({required NoteModel notesModel})  {
+  void addNote({required NoteModel notesModel}) {
     emit(AddNoteLoadingState());
-        myBox.put(notesModel.title, notesModel).then((value) {
-          emit(AddNoteSuccessState());
-          getNotes();
-        }).catchError((err){
-          emit(AddNoteFailureState(err.toString()));
-          //print(err.toString());
-        });
+    myBox.put(notesModel.title, notesModel).then((value) {
+      emit(AddNoteSuccessState());
+      getNotes();
+    }).catchError((err) {
+      emit(AddNoteFailureState(err.toString()));
+      //print(err.toString());
+    });
   }
 
-  void getNotes(){
+  void getNotes() {
     emit(GetNoteLoadingState());
     try {
       noteNotesList = myBox.values.toList();
@@ -44,40 +41,53 @@ class MainCubit extends Cubit<MainState> {
     required String subTitle,
     required String date,
     required int color,
-  })  {
+  }) {
     emit(UpdateNoteLoadingState());
-    myBox.putAt(
+    myBox
+        .putAt(
       index,
       NoteModel(title: title, subTitle: subTitle, date: date, color: color),
-    ).then((value) {
+    )
+        .then((value) {
       emit(AddNoteSuccessState());
       getNotes();
-    }).catchError((err){
+    }).catchError((err) {
       emit(AddNoteFailureState(err.toString()));
       //print(err.toString());
     });
   }
 
-  void deleteNote ({required int index}){
+  void deleteNote({required int index}) {
     emit(DeleteNoteLoadingState());
     myBox.deleteAt(index).then((value) {
       emit(DeleteNoteSuccessState());
-    }).catchError((err){
+    }).catchError((err) {
       emit(DeleteNoteFailureState(err.toString()));
     });
   }
 
-  void changeAppColor ({required Color color}){
-    currentColor = color ;
+  void changeAppColor({required Color color}) {
+    currentColor = color;
     emit(ChangeAppColorSuccessState());
   }
 
-  void navigateTo (BuildContext context, Widget widget){
+  void navigateTo(BuildContext context, Widget widget) {
     try {
       Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
       emit(NavigateToSuccessState());
     } on Exception catch (err) {
       emit(NavigateToSuccessFailure(err.toString()));
     }
+  }
+
+  String customizeDateFormat() {
+    DateTime today = DateTime.now();
+    String date =
+        "${today.hour.toString().padLeft(2, '0')}"
+        ":${today.minute.toString().padLeft(2, '0')}"
+        "  ${today.year.toString()}"
+        "-${today.month.toString().padLeft(2, '0')}"
+        "-${today.day.toString().padLeft(2, '0')}";
+    return date;
   }
 }
