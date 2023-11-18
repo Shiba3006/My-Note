@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import '../models/note_model.dart';
 
-part 'main_state.dart';
+part 'note_states.dart';
 
-class MainCubit extends Cubit<MainState> {
-  MainCubit() : super(MainInitialState());
+class NotesCubit extends Cubit<NotesStates> {
+  NotesCubit() : super(NotesInitialStates());
 
-  static MainCubit get(context) => BlocProvider.of(context);
+  static NotesCubit get(context) => BlocProvider.of(context);
 
   Color? currentColor;
+  Color? newColor;
 
   List<NoteModel> noteNotesList = [];
 

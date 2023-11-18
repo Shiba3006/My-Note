@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_note/cubits/main_cubit.dart';
+import 'package:my_note/cubits/notes_cubit.dart';
 
 import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
@@ -22,14 +22,14 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit, MainState>(
+    return BlocConsumer<NotesCubit, NotesStates>(
       listener: (context, state) {
         if (state is GetNoteSuccessState) {
           Navigator.pop(context);
         }
       },
       builder: (context, state) {
-        var cubit = MainCubit.get(context);
+        var cubit = NotesCubit.get(context);
         return Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 24,

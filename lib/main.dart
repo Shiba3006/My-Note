@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:my_note/cubits/main_cubit.dart';
+import 'package:my_note/cubits/notes_cubit.dart';
 import 'package:my_note/views/notes_view.dart';
 import 'constants/constants.dart';
 import 'cubits/bloc_observer.dart';
@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MainCubit()..getNotes()..getAppColor(),
-      child: BlocConsumer<MainCubit, MainState>(
+      create: (context) => NotesCubit()..getNotes()..getAppColor(),
+      child: BlocConsumer<NotesCubit, NotesStates>(
         listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               // scaffoldBackgroundColor: primaryColor[50],
               fontFamily: 'Poppins',
               colorScheme: ColorScheme.fromSeed(
-                  seedColor:MainCubit.get(context).currentColor ?? Colors.green,
+                  seedColor:NotesCubit.get(context).currentColor ?? Colors.green,
                   //MainCubit.get(context).getAppColor() ?? Colors.green,
               ),
               useMaterial3: true,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_note/cubits/main_cubit.dart';
+import 'package:my_note/cubits/notes_cubit.dart';
 
 import 'color_picker.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:my_note/cubits/main_cubit.dart';
+import 'package:my_note/cubits/notes_cubit.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,11 +15,11 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit, MainState>(
+    return BlocConsumer<NotesCubit, NotesStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return BlockPicker(
-          pickerColor: MainCubit.get(context).currentColor ?? Colors.grey,
+          pickerColor: NotesCubit.get(context).currentColor ?? Colors.grey,
 
           // another type
 
@@ -44,7 +44,7 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
             Colors.black,
           ],
           onColorChanged: (newColor) {
-            return MainCubit.get(context).changeAppColor(newColorValue: newColor.value);
+            return NotesCubit.get(context).changeAppColor(newColorValue: newColor.value);
           }
         );
       },

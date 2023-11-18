@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/views/search_view.dart';
 import 'package:my_note/views/setting_view.dart';
 
-import '../../cubits/main_cubit.dart';
+import '../../cubits/notes_cubit.dart';
 
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -11,10 +11,10 @@ class CustomSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit, MainState>(
+    return BlocConsumer<NotesCubit, NotesStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = MainCubit.get(context);
+        var cubit = NotesCubit.get(context);
         return SliverAppBar(
           expandedHeight: 220,
           leading: IconButton(
@@ -38,7 +38,7 @@ class CustomSliverAppBar extends StatelessWidget {
           ],
           centerTitle: true,
           pinned: true,
-          backgroundColor: MainCubit
+          backgroundColor: NotesCubit
               .get(context)
               .currentColor,
           flexibleSpace: const FlexibleSpaceBar(

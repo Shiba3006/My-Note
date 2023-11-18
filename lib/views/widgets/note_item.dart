@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_note/cubits/main_cubit.dart';
+import 'package:my_note/cubits/notes_cubit.dart';
 
 import 'package:my_note/views/edit_note_view.dart';
 
@@ -11,14 +11,14 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = MainCubit.get(context);
+    var cubit = NotesCubit.get(context);
     return GestureDetector(
       onTap: () {
         cubit.navigateTo(context, EditNoteView(index: index,));
       },
       child: Container(
         decoration: BoxDecoration(
-          color: MainCubit.get(context).currentColor,
+          color: NotesCubit.get(context).currentColor,
           borderRadius: BorderRadius.circular(14),
         ),
         child: Column(

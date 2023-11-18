@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_note/cubits/main_cubit.dart';
+import 'package:my_note/cubits/notes_cubit.dart';
 import 'package:my_note/models/note_model.dart';
 
 
@@ -24,8 +24,8 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = MainCubit.get(context);
-    return BlocConsumer<MainCubit, MainState>(
+    var cubit = NotesCubit.get(context);
+    return BlocConsumer<NotesCubit, NotesStates>(
       listener: (context, state) {
         if(state is GetNoteSuccessState) {
           Navigator.pop(context);

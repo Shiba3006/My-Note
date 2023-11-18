@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../cubits/main_cubit.dart';
+import '../../cubits/notes_cubit.dart';
 import 'custom_alert_dialog.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -51,7 +51,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       height: 30,
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: MainCubit.get(context).currentColor,
+                        color: NotesCubit.get(context).currentColor,
                       ),
                     ),
                   ),
