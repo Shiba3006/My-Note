@@ -12,15 +12,15 @@ class BuildColorPicker extends StatefulWidget {
 }
 
 class _BuildColorPickerState extends State<BuildColorPicker> {
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainState>(
       listener: (context, state) {},
       builder: (context, state) {
         return BlockPicker(
-          pickerColor: MainCubit
-              .get(context)
-              .currentColor,
+          pickerColor: MainCubit.get(context).currentColor ?? Colors.grey,
+
           // another type
 
           // enableAlpha: false,
@@ -43,8 +43,9 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
             Colors.brown,
             Colors.black,
           ],
-          onColorChanged: (newColor) =>
-              MainCubit.get(context).changeAppColor(color: newColor),
+          onColorChanged: (newColor) {
+            return MainCubit.get(context).changeAppColor(newColorValue: newColor.value);
+          }
         );
       },
     );

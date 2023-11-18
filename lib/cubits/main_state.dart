@@ -42,6 +42,18 @@ class DeleteNoteFailureState extends MainState {
 }
 
 class ChangeAppColorSuccessState extends MainState {}
+class ChangeAppColorFailureState extends MainState {
+  final String err;
+
+  ChangeAppColorFailureState(this.err);
+}
+
+class GetAppColorSuccessState extends MainState {}
+class GetAppColorFailureState extends MainState {
+  final String err;
+
+  GetAppColorFailureState(this.err);
+}
 
 class NavigateToSuccessState extends MainState {}
 class NavigateToSuccessFailure extends MainState {

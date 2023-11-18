@@ -10,7 +10,7 @@ class MainCubit extends Cubit<MainState> {
 
   static MainCubit get(context) => BlocProvider.of(context);
 
-  Color currentColor = Colors.indigoAccent;
+  Color? currentColor;
 
   List<NoteModel> noteNotesList = [];
 
@@ -61,14 +61,31 @@ class MainCubit extends Cubit<MainState> {
     emit(DeleteNoteLoadingState());
     myBox.deleteAt(index).then((value) {
       emit(DeleteNoteSuccessState());
+      getNotes();
     }).catchError((err) {
       emit(DeleteNoteFailureState(err.toString()));
     });
   }
 
-  void changeAppColor({required Color color}) {
-    currentColor = color;
-    emit(ChangeAppColorSuccessState());
+  void changeAppColor({required int newColorValue}) {
+    currentColor = Color(newColorValue);
+    myColorBox.put('newColor', newColorValue).then((value) {
+      getAppColor();
+      emit(ChangeAppColorSuccessState());
+    }).catchError((err){
+      print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee${err.toString()}');
+      emit(ChangeAppColorFailureState(err.toString()));
+    });
+  }
+
+  void getAppColor (){ // myColorBox.values.toString()
+    try {
+      currentColor = Color(myColorBox.get('newColor', defaultValue: 0xffeb34de)!);
+      print('============================${currentColor.toString()}');
+      emit(GetAppColorSuccessState());
+    } on Exception catch (err) {
+      emit(GetAppColorFailureState(err.toString()));
+    }
   }
 
   void navigateTo(BuildContext context, Widget widget) {

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_note/cubits/main_cubit.dart';
 import 'package:my_note/views/notes_view.dart';
-import 'cashe_helper.dart';
 import 'constants/constants.dart';
 import 'cubits/bloc_observer.dart';
 import 'models/note_model.dart';
@@ -16,8 +15,7 @@ void main() async {
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.initFlutter();
   myBox = await Hive.openBox<NoteModel>(notesBox);
-  
-  await CacheHelper.init();
+  myColorBox = await Hive.openBox<int>(colorBox);
 
   runApp(const MyApp());
 }
@@ -28,10 +26,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MainCubit()..getNotes()..customizeDateFormat(),
+      create: (context) => MainCubit()..getNotes()..getAppColor(),
       child: BlocConsumer<MainCubit, MainState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -39,7 +36,9 @@ class MyApp extends StatelessWidget {
               // scaffoldBackgroundColor: primaryColor[50],
               fontFamily: 'Poppins',
               colorScheme: ColorScheme.fromSeed(
-                  seedColor: MainCubit.get(context).currentColor),
+                  seedColor:MainCubit.get(context).currentColor ?? Colors.green,
+                  //MainCubit.get(context).getAppColor() ?? Colors.green,
+              ),
               useMaterial3: true,
             ),
             home: const NotesView(),

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 
 class MyBlocObserver extends BlocObserver {
   @override
@@ -10,18 +11,24 @@ class MyBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    print('onChange -- ${bloc.runtimeType}, $change');
+    if (kDebugMode) {
+      print('onChange -- ${bloc.runtimeType}, $change');
+    }
   }
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    print('onError -- ${bloc.runtimeType}, $error');
+    if (kDebugMode) {
+      print('onError -- ${bloc.runtimeType}, $error');
+    }
     super.onError(bloc, error, stackTrace);
   }
 
   @override
   void onClose(BlocBase bloc) {
     super.onClose(bloc);
-    print('onClose -- ${bloc.runtimeType}');
+    if (kDebugMode) {
+      print('onClose -- ${bloc.runtimeType}');
+    }
   }
 }

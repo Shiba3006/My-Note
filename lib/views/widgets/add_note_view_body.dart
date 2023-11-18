@@ -40,51 +40,49 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
             child: Form(
               key: formKey,
               autovalidateMode: autoValidateMode,
-              child: Container(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    CustomAppBar(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          cubit.addNote(notesModel:  NoteModel(
-                            title: title!,
-                            subTitle: subTitle!,
-                            date: cubit.customizeDateFormat(),
-                            color: 1312,
-                          ));
-                        } else {
-                          autoValidateMode = AutovalidateMode.always;
-                        }
-                      },
-                      icon: FontAwesomeIcons.penToSquare,
-                      title: 'Add Note',
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                      onSaved: (value) {
-                        title = value;
-                      },
-                      hint: 'title',
-                      maxLine: 1,
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                      onSaved: (value) {
-                        subTitle = value;
-                      },
-                      hint: 'content',
-                      maxLine: 20,
-                    ),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  CustomAppBar(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        cubit.addNote(notesModel:  NoteModel(
+                          title: title!,
+                          subTitle: subTitle!,
+                          date: cubit.customizeDateFormat(),
+                          color: 1312,
+                        ));
+                      } else {
+                        autoValidateMode = AutovalidateMode.always;
+                      }
+                    },
+                    icon: FontAwesomeIcons.penToSquare,
+                    title: 'Add Note',
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  CustomTextField(
+                    onSaved: (value) {
+                      title = value;
+                    },
+                    hint: 'title',
+                    maxLine: 1,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  CustomTextField(
+                    onSaved: (value) {
+                      subTitle = value;
+                    },
+                    hint: 'content',
+                    maxLine: 20,
+                  ),
+                ],
               ),
             ),
           ),
