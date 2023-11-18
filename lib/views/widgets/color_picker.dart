@@ -20,7 +20,6 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
       builder: (context, state) {
         return BlockPicker(
           pickerColor: NotesCubit.get(context).currentColor ?? Colors.grey,
-
           // another type
 
           // enableAlpha: false,

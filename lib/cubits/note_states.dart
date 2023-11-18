@@ -41,6 +41,7 @@ class DeleteNoteFailureState extends NotesStates {
   DeleteNoteFailureState(this.err);
 }
 
+// change app color and save it in hive box
 class ChangeAppColorSuccessState extends NotesStates {}
 class ChangeAppColorFailureState extends NotesStates {
   final String err;
@@ -48,6 +49,7 @@ class ChangeAppColorFailureState extends NotesStates {
   ChangeAppColorFailureState(this.err);
 }
 
+// get app saved color from hive box
 class GetAppColorSuccessState extends NotesStates {}
 class GetAppColorFailureState extends NotesStates {
   final String err;
@@ -55,9 +57,18 @@ class GetAppColorFailureState extends NotesStates {
   GetAppColorFailureState(this.err);
 }
 
+// navigator
 class NavigateToSuccessState extends NotesStates {}
 class NavigateToSuccessFailure extends NotesStates {
   final String err;
 
   NavigateToSuccessFailure(this.err);
+}
+
+// change picker color color
+class ChangePickerColorSuccessState extends NotesStates {}
+class ChangePickerColorFailureState extends NotesStates {
+  final String err;
+
+  ChangePickerColorFailureState(this.err);
 }
