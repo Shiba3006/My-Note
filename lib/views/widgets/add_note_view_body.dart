@@ -80,7 +80,7 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
                       subTitle = value;
                     },
                     hint: 'content',
-                    maxLine: 20,
+                    maxLine: 10,
                   ),
                 ],
               ),

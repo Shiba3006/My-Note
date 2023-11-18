@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_note/cubits/main_cubit.dart';
+import 'package:my_note/views/widgets/custom_bottom_sheet.dart';
+import 'package:my_note/views/widgets/custom_text_field.dart';
 import 'package:my_note/views/widgets/notes_view_body.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,25 +33,10 @@ class _NotesViewState extends State<NotesView> {
               FontAwesomeIcons.plus,
             ),
             onPressed: () {
-              cubit.navigateTo(context, const AddNoteView());
-              // scaffoldKey.currentState?.showBottomSheet((context) =>
-              // Container(
-              //   color: Colors.transparent,
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(15.0),
-              //     child: Column(
-              //       mainAxisSize: MainAxisSize.min,
-              //       children: [
-              //         CustomTextField(hint: 'hint', onSaved: (value){}),
-              //         CustomTextField(hint: 'hint', onSaved: (value){}),
-              //         CustomTextField(hint: 'hint', onSaved: (value){}),
-              //         CustomTextField(hint: 'hint', onSaved: (value){}),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              //
-              // );
+              //cubit.navigateTo(context, const AddNoteView());
+              scaffoldKey.currentState?.showBottomSheet((context) =>
+              const CustomBottomSheet(),
+              );
             },
           ),
           body: const NotesViewBody(),
