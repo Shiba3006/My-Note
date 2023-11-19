@@ -34,7 +34,9 @@ class SettingViewBody extends StatelessWidget {
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (context) => const CustomAlertDialog(),
+                builder: (context) => CustomAlertDialog(
+                 colorFunction: (newColor) => NotesCubit.get(context).changeAppColor(newColorValue: newColor.value),
+                ),
               );
             },
             text: 'Pick color',

@@ -22,7 +22,6 @@ class NotesCubit extends Cubit<NotesStates> {
       getNotes();
     }).catchError((err) {
       emit(AddNoteFailureState(err.toString()));
-      //print(err.toString());
     });
   }
 
@@ -78,15 +77,14 @@ class NotesCubit extends Cubit<NotesStates> {
     });
   }
 
-  void changeNoteColor({required int newColorValue}) {
-    noteColor = Color(newColorValue);
-    myColorBox.put('newColor', newColorValue).then((value) {
-      emit(ChangeAppColorSuccessState());
-    }).catchError((err){
-      print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee${err.toString()}');
-      emit(ChangeAppColorFailureState(err.toString()));
-    });
-  }
+  // void changeNoteColor ({int? newColorValue}){
+  //   try {
+  //     noteColor = Color(newColorValue ?? currentColor!.value);
+  //     emit(ChangeNoteColorSuccessState());
+  //   } on Exception catch (err) {
+  //     emit(ChangeNoteColorFailureState(err.toString()));
+  //   }
+  // }
 
   void getAppColor (){ // myColorBox.values.toString()
     try {

@@ -5,7 +5,8 @@ import 'package:my_note/cubits/notes_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuildColorPicker extends StatefulWidget {
-  const BuildColorPicker({super.key});
+  const BuildColorPicker({super.key, required this.colorFunction});
+  final void Function(Color) colorFunction;
 
   @override
   State<BuildColorPicker> createState() => _BuildColorPickerState();
@@ -42,9 +43,9 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
             Colors.brown,
             Colors.black,
           ],
-          onColorChanged: (newColor) {
-            return NotesCubit.get(context).changeAppColor(newColorValue: newColor.value);
-          }
+          onColorChanged: widget.colorFunction,
+          //     NotesCubit.get(context).changeAppColor(newColorValue: newColor.value);
+          // }
         );
       },
     );

@@ -16,7 +16,6 @@ void main() async {
   await Hive.initFlutter();
   myBox = await Hive.openBox<NoteModel>(notesBox);
   myColorBox = await Hive.openBox<int>(colorBox);
-  myNoteColorBox = await Hive.openBox<int>(noteColorBox);
 
   runApp(const MyApp());
 }
