@@ -49,6 +49,14 @@ class ChangeAppColorFailureState extends NotesStates {
   ChangeAppColorFailureState(this.err);
 }
 
+// change app color and save it in hive box
+class ChangeNoteColorSuccessState extends NotesStates {}
+class ChangeNoteColorFailureState extends NotesStates {
+  final String err;
+
+  ChangeNoteColorFailureState(this.err);
+}
+
 // get app saved color from hive box
 class GetAppColorSuccessState extends NotesStates {}
 class GetAppColorFailureState extends NotesStates {

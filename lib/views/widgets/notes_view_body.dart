@@ -7,7 +7,7 @@ class NotesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const CustomScrollView(
+    return  CustomScrollView(
       slivers: [
         CustomSliverAppBar(),
         CustomSliverList(),

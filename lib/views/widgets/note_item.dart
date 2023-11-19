@@ -18,7 +18,7 @@ class NoteItem extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: NotesCubit.get(context).currentColor,
+          color: NotesCubit.get(context).currentColor ,
           borderRadius: BorderRadius.circular(14),
         ),
         child: Column(

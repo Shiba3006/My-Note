@@ -5,7 +5,7 @@ import 'package:my_note/cubits/notes_cubit.dart';
 import 'note_item.dart';
 
 class CustomSliverList extends StatefulWidget {
-  const CustomSliverList({super.key,});
+  const CustomSliverList({super.key});
 
   @override
   State<CustomSliverList> createState() => _CustomSliverListState();

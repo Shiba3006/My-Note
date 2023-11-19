@@ -24,9 +24,9 @@ class _SearchViewBodyState extends State<SearchViewBody> {
             },
             hint: 'Search....',
           ),
-          const Expanded(
-              child: NotesListView(),
-          ),
+          // const Expanded(
+          //     child: NotesListView(),
+          // ),
         ],
       ),
     );

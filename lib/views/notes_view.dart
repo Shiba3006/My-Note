@@ -30,13 +30,12 @@ class _NotesViewState extends State<NotesView> {
               FontAwesomeIcons.plus,
             ),
             onPressed: () {
-              //cubit.navigateTo(context, const AddNoteView());
               scaffoldKey.currentState?.showBottomSheet((context) =>
               const CustomBottomSheet(),
               );
             },
           ),
-          body: const NotesViewBody(),
+          body: NotesViewBody(),
         );
       },
     );

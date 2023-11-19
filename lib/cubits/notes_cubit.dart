@@ -11,6 +11,7 @@ class NotesCubit extends Cubit<NotesStates> {
   static NotesCubit get(context) => BlocProvider.of(context);
 
   Color? currentColor;
+  Color? noteColor;
 
   List<NoteModel> noteNotesList = [];
 
@@ -77,10 +78,19 @@ class NotesCubit extends Cubit<NotesStates> {
     });
   }
 
+  void changeNoteColor({required int newColorValue}) {
+    noteColor = Color(newColorValue);
+    myColorBox.put('newColor', newColorValue).then((value) {
+      emit(ChangeAppColorSuccessState());
+    }).catchError((err){
+      print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee${err.toString()}');
+      emit(ChangeAppColorFailureState(err.toString()));
+    });
+  }
+
   void getAppColor (){ // myColorBox.values.toString()
     try {
       currentColor = Color(myColorBox.get('newColor', defaultValue: 0xffeb34de)!);
-      print('============================${currentColor.toString()}');
       emit(GetAppColorSuccessState());
     } on Exception catch (err) {
       emit(GetAppColorFailureState(err.toString()));
