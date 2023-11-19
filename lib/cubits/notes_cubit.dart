@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants/constants.dart';
 import '../models/note_model.dart';
 
@@ -11,7 +12,6 @@ class NotesCubit extends Cubit<NotesStates> {
   static NotesCubit get(context) => BlocProvider.of(context);
 
   Color? currentColor;
-  Color? noteColor;
 
   List<NoteModel> notesList = [];
 
@@ -76,19 +76,9 @@ class NotesCubit extends Cubit<NotesStates> {
     myColorBox.put('newColor', newColorValue).then((value) {
       emit(ChangeAppColorSuccessState());
     }).catchError((err){
-      print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee${err.toString()}');
       emit(ChangeAppColorFailureState(err.toString()));
     });
   }
-
-  // void changeNoteColor ({int? newColorValue}){
-  //   try {
-  //     noteColor = Color(newColorValue ?? currentColor!.value);
-  //     emit(ChangeNoteColorSuccessState());
-  //   } on Exception catch (err) {
-  //     emit(ChangeNoteColorFailureState(err.toString()));
-  //   }
-  // }
 
   void getAppColor (){ // myColorBox.values.toString()
     try {
@@ -117,6 +107,18 @@ class NotesCubit extends Cubit<NotesStates> {
         "-${today.month.toString().padLeft(2, '0')}"
         "-${today.day.toString().padLeft(2, '0')}";
     return date;
+  }
+
+  bool isBottomSheetOpen = false;
+  Icon? fabIcon = const Icon(FontAwesomeIcons.pencil);
+
+  void changeBottomSheetState ({
+    required bool isBottomSheetOpen,
+    required Icon icon ,
+  }){
+    this.isBottomSheetOpen = isBottomSheetOpen;
+    fabIcon = icon;
+    emit(BottomSheetChangedSuccessState());
   }
 
 }

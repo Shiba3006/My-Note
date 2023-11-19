@@ -20,20 +20,31 @@ class _RoaaViewState extends State<RoaaView> {
             cycles: 0,
             curve: Curves.elasticOut,
             tween: Tween<double>(begin: 20.0, end: 25.0),
-            builder: (context, animatorState, child) => Stack(
-              alignment: AlignmentDirectional.center,
+            builder: (context, animatorState, child) => Column(
               children: [
-                Icon(
-                  Icons.favorite,
-                  size: animatorState.value * 10,
-                  color: const Color(0xFFFF5757),
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Icon(
+                      Icons.favorite,
+                      size: animatorState.value * 10,
+                      color: const Color(0xFFFF5757),
+                    ),
+                    const Text(
+                      'Roaa',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ],
                 ),
-                const Text(
-                  'Roaa',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.w800,
+                SizedBox(height: 10,),
+                Expanded(
+                  child: Text(
+                      'بحبك و مش عاوزك تزعلي مني ',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
               ],

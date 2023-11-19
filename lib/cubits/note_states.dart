@@ -81,4 +81,8 @@ class ChangePickerColorFailureState extends NotesStates {
   ChangePickerColorFailureState(this.err);
 }
 
+// special method
 class RoaaSuccessState extends NotesStates {}
+
+// for bottomSheet
+class BottomSheetChangedSuccessState extends NotesStates {}
