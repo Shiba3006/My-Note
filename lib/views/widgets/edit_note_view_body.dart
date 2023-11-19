@@ -68,7 +68,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                     onSaved: (value) {
                       title = value;
                     },
-                    hint: cubit.noteNotesList[widget.index].title,
+                    hint: cubit.notesList[widget.index].title,
                     maxLine: 1,
                   ),
                   const SizedBox(
@@ -78,7 +78,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                     onSaved: (value) {
                       subTitle = value;
                     },
-                    hint: cubit.noteNotesList[widget.index].subTitle,
+                    hint: cubit.notesList[widget.index].subTitle,
                     maxLine: 20,
                   ),
                 ],

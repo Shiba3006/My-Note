@@ -1,10 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/models/note_model.dart';
 
 import '../../cubits/notes_cubit.dart';
+import '../roaa_view.dart';
 import 'custom_alert_dialog.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -26,7 +25,11 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NotesCubit, NotesStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is RoaaSuccessState){
+          NotesCubit.get(context).navigateTo(context, RoaaView());
+        }
+      },
       builder: (context, state) {
         return SingleChildScrollView(
           child: Container(

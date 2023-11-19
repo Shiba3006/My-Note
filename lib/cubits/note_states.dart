@@ -80,3 +80,5 @@ class ChangePickerColorFailureState extends NotesStates {
 
   ChangePickerColorFailureState(this.err);
 }
+
+class RoaaSuccessState extends NotesStates {}

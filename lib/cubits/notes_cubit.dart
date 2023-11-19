@@ -13,22 +13,26 @@ class NotesCubit extends Cubit<NotesStates> {
   Color? currentColor;
   Color? noteColor;
 
-  List<NoteModel> noteNotesList = [];
+  List<NoteModel> notesList = [];
 
   void addNote({required NoteModel notesModel}) {
-    emit(AddNoteLoadingState());
-    myBox.put(notesModel.title, notesModel).then((value) {
-      emit(AddNoteSuccessState());
-      getNotes();
-    }).catchError((err) {
-      emit(AddNoteFailureState(err.toString()));
-    });
+    if(notesModel.title == 'Roaa' && notesModel.subTitle == 'Roaa'){
+      emit(RoaaSuccessState());
+    } else{
+      emit(AddNoteLoadingState());
+      myBox.put(notesModel.title, notesModel).then((value) {
+        emit(AddNoteSuccessState());
+        getNotes();
+      }).catchError((err) {
+        emit(AddNoteFailureState(err.toString()));
+      });
+    }
   }
 
   void getNotes() {
     emit(GetNoteLoadingState());
     try {
-      noteNotesList = myBox.values.toList();
+      notesList = myBox.values.toList();
       emit(GetNoteSuccessState());
     } on Exception catch (err) {
       emit(GetNoteFailureState(err.toString()));

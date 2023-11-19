@@ -18,7 +18,7 @@ class NoteItem extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: NotesCubit.get(context).currentColor ,
+          color: Color(NotesCubit.get(context).notesList[index].color) ,
           borderRadius: BorderRadius.circular(14),
         ),
         child: Column(
@@ -31,13 +31,13 @@ class NoteItem extends StatelessWidget {
               ),
               child: ListTile(
                 title: Text(
-                  cubit.noteNotesList[index].title,
+                  cubit.notesList[index].title,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: 24.0,
                       ),
                 ),
                 subtitle: Text(
-                  cubit.noteNotesList[index].subTitle,
+                  cubit.notesList[index].subTitle,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontSize: 20,
                         color: Colors.black.withOpacity(.6),
@@ -69,7 +69,7 @@ class NoteItem extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    cubit.noteNotesList[index].date,
+                    cubit.notesList[index].date,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
