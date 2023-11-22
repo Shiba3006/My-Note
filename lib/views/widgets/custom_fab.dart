@@ -31,7 +31,7 @@ class _CustomFabState extends State<CustomFab> {
                 notesModel: NoteModel(
                   title: cubit.title!,
                   subTitle: cubit.subTitle!,
-                  date: NotesCubit.get(context).customizeDateFormat(),
+                  date: NotesCubit.get(context).customizeDateNowFormat(),
                   color: cubit.noteColor?.value ??
                       NotesCubit.get(context).currentColor!.value,
                 ));

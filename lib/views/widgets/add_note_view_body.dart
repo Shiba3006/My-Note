@@ -52,7 +52,7 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
                         cubit.addNote(notesModel:  NoteModel(
                           title: title!,
                           subTitle: subTitle!,
-                          date: cubit.customizeDateFormat(),
+                          date: cubit.customizeDateNowFormat(),
                           color: 1312,
                         ));
                       } else {

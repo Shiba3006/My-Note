@@ -29,6 +29,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   CustomTextFormField(
+                      prefixIcon: Icons.title,
                       hint: 'title',
                       onSaved: (value) {
                         cubit.title = value;
@@ -37,6 +38,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     height: 15,
                   ),
                   CustomTextFormField(
+                    prefixIcon: Icons.subject,
                     hint: 'content',
                     onSaved: (value) {
                       cubit.subTitle = value;
@@ -58,6 +60,48 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       ],
                     ),
                   ),
+                  if (cubit.isSwitchOn) ...[
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CustomTextFormField(
+                      prefixIcon: Icons.date_range,
+                      hint: 'Date Reminder',
+                      onSaved: (value) {
+                        cubit.date = value;
+                      },
+                      onTap: () {
+                        showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(3000),
+                        ).then((value) {
+                          cubit.setDate(newDate: value!);
+                        });
+                      },
+                      controller: cubit.date == null ? null : cubit.dateController,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    CustomTextFormField(
+                      onTap: (){
+                        showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                        ).then((value) {
+                          cubit.setTime(newTime: value!, context: context);
+                        });
+                      },
+                      controller: cubit.time == null ? null : cubit.timeController,
+                      prefixIcon: Icons.watch_later,
+                      hint: 'time Reminder',
+                      onSaved: (value) {
+                        cubit.time = value;
+                      },
+                    ),
+                  ],
                 ],
               ),
             ),

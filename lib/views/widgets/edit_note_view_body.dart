@@ -51,7 +51,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                           index: widget.index,
                           title: title!,
                           subTitle: subTitle!,
-                          date: cubit.customizeDateFormat(),
+                          date: cubit.customizeDateNowFormat(),
                           color: 144,
                         );
                       } else {

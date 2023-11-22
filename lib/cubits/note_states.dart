@@ -91,3 +91,9 @@ class ChangeColorSuccessState extends NotesStates {}
 
 // change Switch state
 class ChangeSwitchSuccessState extends NotesStates {}
+
+// set reminder date
+class DateSetSuccessState extends NotesStates {}
+
+// set reminder time
+class TimeSetSuccessState extends NotesStates {}

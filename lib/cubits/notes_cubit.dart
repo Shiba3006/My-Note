@@ -98,7 +98,7 @@ class NotesCubit extends Cubit<NotesStates> {
     }
   }
 
-  String customizeDateFormat() {
+  String customizeDateNowFormat() {
     DateTime today = DateTime.now();
     String date =
         "${today.hour.toString().padLeft(2, '0')}"
@@ -107,6 +107,12 @@ class NotesCubit extends Cubit<NotesStates> {
         "-${today.month.toString().padLeft(2, '0')}"
         "-${today.day.toString().padLeft(2, '0')}";
     return date;
+  }
+
+  String formatDate({required DateTime date}) {
+    return '${date.year.toString()}'
+        '-${date.month.toString().padLeft(2,'0')}'
+        '-${date.day.toString().padLeft(2,'0')}';
   }
 
   bool isBottomSheetOpen = false;
@@ -141,4 +147,22 @@ class NotesCubit extends Cubit<NotesStates> {
     emit(ChangeSwitchSuccessState());
   }
 
+  TextEditingController dateController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
+  String? date;
+  String? time;
+
+  void setDate ({required DateTime newDate}){
+    date = formatDate(date: newDate);
+    dateController.text = date!;
+    debugPrint(date);
+    emit(DateSetSuccessState());
+  }
+
+  void setTime ({required TimeOfDay newTime, required BuildContext context}){
+    time = newTime.format(context).toString();
+    timeController.text = time!;
+    debugPrint(time);
+    emit(TimeSetSuccessState());
+  }
 }
