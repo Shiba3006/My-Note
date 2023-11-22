@@ -88,3 +88,6 @@ class RoaaSuccessState extends NotesStates {}
 class BottomSheetChangedSuccessState extends NotesStates {}
 
 class ChangeColorSuccessState extends NotesStates {}
+
+// change Switch state
+class ChangeSwitchSuccessState extends NotesStates {}

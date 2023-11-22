@@ -134,4 +134,11 @@ class NotesCubit extends Cubit<NotesStates> {
   String? title, subTitle;
   Color? noteColor;
 
+  bool isSwitchOn = false;
+
+  void changeSwitchState ({required bool value}){
+    isSwitchOn = value;
+    emit(ChangeSwitchSuccessState());
+  }
+
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
-
-import 'custom_alert_dialog.dart';
+import 'custom_note_color_picker.dart';
+import 'custom_reminder_switch.dart';
 import 'custom_text_form_field.dart';
 
 class CustomBottomSheet extends StatefulWidget {
@@ -44,56 +44,19 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     maxLine: 5,
                   ),
                   const SizedBox(height: 15),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Select note color:',
+                  const Padding(
+                    padding: EdgeInsetsDirectional.symmetric(
+                      horizontal: 10,
+                    ),
+                    child: Row(
+                      children: [
+                        CustomNoteColorPicker(),
+                        SizedBox(
+                          width: 50,
                         ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) =>
-                                  CustomAlertDialog(
-                                      colorFunction: (newColor) {
-                                        cubit.changeColor(newColor: newColor);
-                                      }
-                                  ),
-                            );
-                          },
-                          child: Container(
-                            // color circle to show the picked color.
-                            height: 50,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              // borderRadius: BorderRadius.circular(
-                              //   14,
-                              // ),
-                              color: cubit.noteColor ?? cubit.currentColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          'Set reminder (Optional):',
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: (){
-
-                          },
-                          child: Switch(
-                              value: false,
-                              onChanged: (value) {},
-                          ),
-                        ),
-                      ),
-                    ],
+                        CustomReminderSwitch(),
+                      ],
+                    ),
                   ),
                 ],
               ),
