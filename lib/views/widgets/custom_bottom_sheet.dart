@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 
 import 'custom_alert_dialog.dart';
-import 'custom_button.dart';
 import 'custom_text_form_field.dart';
 
 class CustomBottomSheet extends StatefulWidget {
@@ -48,8 +47,13 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   Row(
                     children: [
                       Expanded(
-                        child: CustomButton(
-                          onPressed: () {
+                        child: Text(
+                          'Select note color:',
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
                             showDialog(
                               context: context,
                               builder: (context) =>
@@ -60,24 +64,32 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                                   ),
                             );
                           },
-                          text: 'Pick color',
+                          child: Container(
+                            // color circle to show the picked color.
+                            height: 50,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              // borderRadius: BorderRadius.circular(
+                              //   14,
+                              // ),
+                              color: cubit.noteColor ?? cubit.currentColor,
+                            ),
+                          ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 10,
+                      Expanded(
+                        child: Text(
+                          'Set reminder (Optional):',
+                        ),
                       ),
                       Expanded(
-                        child: Container(
-                          // color circle to show the picker color.
-                          height: 30,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              14,
-                            ),
-                            color: cubit.noteColor ??
-                                NotesCubit
-                                    .get(context)
-                                    .currentColor,
+                        child: GestureDetector(
+                          onTap: (){
+
+                          },
+                          child: Switch(
+                              value: false,
+                              onChanged: (value) {},
                           ),
                         ),
                       ),
