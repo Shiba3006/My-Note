@@ -4,9 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../cubits/notes_cubit.dart';
 import '../../models/note_model.dart';
-import 'custom_alert_dialog.dart';
-import 'custom_button.dart';
-import 'custom_text_form_field.dart';
+import 'custom_bottom_sheet.dart';
+
 
 class CustomFab extends StatefulWidget {
   const CustomFab({super.key});
@@ -46,73 +45,7 @@ class _CustomFabState extends State<CustomFab> {
           );
           cubit.scaffoldKey.currentState
               ?.showBottomSheet(
-                (context) => SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Form(
-                  key: cubit.formKey,
-                  autovalidateMode: cubit.autoValidateMode,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CustomTextFormField(
-                          hint: 'title',
-                          onSaved: (value) {
-                            cubit.title = value;
-                          }),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      CustomTextFormField(
-                        hint: 'content',
-                        onSaved: (value) {
-                          cubit.subTitle = value;
-                        },
-                        maxLine: 5,
-                      ),
-                      const SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) =>
-                                      CustomAlertDialog(
-                                          colorFunction: (newColor) {
-                                            cubit.changeColor(newColor: newColor);
-                                          }
-                                      ),
-                                );
-                              },
-                              text: 'Pick color',
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Container(
-                              // color circle to show the picker color.
-                              height: 30,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  14,
-                                ),
-                                color: cubit.noteColor ??
-                                    NotesCubit.get(context)
-                                        .currentColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                (context) => const CustomBottomSheet(),
             elevation: 20,
           )
               .closed
