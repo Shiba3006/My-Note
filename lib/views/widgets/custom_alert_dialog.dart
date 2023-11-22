@@ -5,7 +5,7 @@ import 'package:my_note/cubits/notes_cubit.dart';
 import 'color_picker.dart';
 
 class CustomAlertDialog extends StatefulWidget {
-  const CustomAlertDialog({super.key, required this.colorFunction});
+  const CustomAlertDialog({super.key, required this.colorFunction,});
 
   final void Function(Color) colorFunction;
 
@@ -24,7 +24,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              BuildColorPicker(colorFunction: widget.colorFunction),
+               BuildColorPicker(colorFunction: widget.colorFunction),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();

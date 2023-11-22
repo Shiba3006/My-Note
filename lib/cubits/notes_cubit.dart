@@ -121,4 +121,17 @@ class NotesCubit extends Cubit<NotesStates> {
     emit(BottomSheetChangedSuccessState());
   }
 
+  Color? color;
+
+  void changeColor ({required Color newColor}){
+    color = newColor;
+    emit(ChangeColorSuccessState());
+  }
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+  String? title, subTitle;
+  Color? noteColor;
+
 }

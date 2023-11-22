@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatefulWidget {
-  const CustomTextField(
+class CustomTextFormField extends StatefulWidget {
+  const CustomTextFormField(
       {super.key,
       required this.hint,
       this.maxLine = 1,
@@ -15,10 +15,10 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
 
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'custom_text_field.dart';
-import 'notes_list_view.dart';
+import 'custom_text_form_field.dart';
+
 
 class SearchViewBody extends StatefulWidget {
   const SearchViewBody({super.key});
@@ -18,7 +18,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
       child: Column(
         children: [
           const SizedBox(height: 50,),
-          CustomTextField(
+          CustomTextFormField(
             onSaved: (value){
               searchText = value;
             },

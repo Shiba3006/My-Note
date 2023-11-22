@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:my_note/cubits/notes_cubit.dart';
 import 'package:my_note/views/widgets/custom_button.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/views/widgets/custom_alert_dialog.dart';
 
 class SettingViewBody extends StatelessWidget {
@@ -22,7 +20,7 @@ class SettingViewBody extends StatelessWidget {
           Container( // color circle to show the picker color.
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: NotesCubit.get(context).currentColor,
+              color:NotesCubit.get(context).color ?? NotesCubit.get(context).currentColor,
             ),
             width: 120,
             height: 120,
@@ -35,7 +33,7 @@ class SettingViewBody extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => CustomAlertDialog(
-                 colorFunction: (newColor) => NotesCubit.get(context).changeAppColor(newColorValue: newColor.value),
+                    colorFunction: (newColor) => NotesCubit.get(context).changeAppColor(newColorValue: newColor.value),
                 ),
               );
             },

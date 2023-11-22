@@ -41,7 +41,7 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
             Colors.cyan,
             Colors.blueGrey,
             Colors.brown,
-            Colors.black,
+            Colors.grey,
           ],
           onColorChanged: widget.colorFunction,
           //     NotesCubit.get(context).changeAppColor(newColorValue: newColor.value);

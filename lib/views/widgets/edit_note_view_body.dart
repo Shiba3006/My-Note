@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 
 import 'custom_app_bar.dart';
-import 'custom_text_field.dart';
+import 'custom_text_form_field.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.index});
@@ -64,7 +64,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                   const SizedBox(
                     height: 16,
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     onSaved: (value) {
                       title = value;
                     },
@@ -74,7 +74,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                   const SizedBox(
                     height: 16,
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     onSaved: (value) {
                       subTitle = value;
                     },

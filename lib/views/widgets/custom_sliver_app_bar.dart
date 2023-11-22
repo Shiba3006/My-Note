@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_note/views/search_view.dart';
 import 'package:my_note/views/setting_view.dart';
 
 import '../../cubits/notes_cubit.dart';
+import '../test_notification_view.dart';
 
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -28,7 +28,7 @@ class CustomSliverAppBar extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                cubit.navigateTo(context, const SearchView());
+                cubit.navigateTo(context, const TestLocalNotification());
               },
               icon: const Icon(
                 Icons.search,

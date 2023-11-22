@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 import 'package:my_note/views/notes_view.dart';
+import 'awesome_notification.dart';
 import 'constants/constants.dart';
 import 'cubits/bloc_observer.dart';
 import 'models/note_model.dart';
@@ -11,6 +12,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
+
+  // set the icon to null if you want to use the default app ico
+  await NotificationServices.initializeNotification();
 
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.initFlutter();
@@ -26,7 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NotesCubit()..getNotes()..getAppColor(),
+      create: (context) => NotesCubit()
+        ..getNotes()
+        ..getAppColor(),
       child: BlocConsumer<NotesCubit, NotesStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -36,12 +42,12 @@ class MyApp extends StatelessWidget {
               // scaffoldBackgroundColor: primaryColor[50],
               fontFamily: 'Poppins',
               colorScheme: ColorScheme.fromSeed(
-                  seedColor:NotesCubit.get(context).currentColor ?? Colors.green,
-                  //MainCubit.get(context).getAppColor() ?? Colors.green,
+                seedColor: NotesCubit.get(context).currentColor ?? Colors.green,
+                //MainCubit.get(context).getAppColor() ?? Colors.green,
               ),
               useMaterial3: true,
             ),
-            home:  const NotesView(),
+            home: const NotesView(),
           );
         },
       ),

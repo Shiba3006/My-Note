@@ -6,7 +6,7 @@ import 'package:my_note/models/note_model.dart';
 
 
 import 'custom_app_bar.dart';
-import 'custom_text_field.dart';
+import 'custom_text_form_field.dart';
 
 class AddNoteViewBody extends StatefulWidget {
   const AddNoteViewBody({super.key});
@@ -65,7 +65,7 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
                   const SizedBox(
                     height: 16,
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     onSaved: (value) {
                       title = value;
                     },
@@ -75,7 +75,7 @@ class _AddNoteViewBodyState extends State<AddNoteViewBody> {
                   const SizedBox(
                     height: 16,
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     onSaved: (value) {
                       subTitle = value;
                     },
