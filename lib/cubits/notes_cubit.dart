@@ -165,4 +165,5 @@ class NotesCubit extends Cubit<NotesStates> {
     debugPrint(time);
     emit(TimeSetSuccessState());
   }
+
 }

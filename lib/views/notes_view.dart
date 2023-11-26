@@ -10,6 +10,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class NotesView extends StatefulWidget {
   const NotesView({super.key});
 
+  static final GlobalKey<NavigatorState> navigatorKey =
+  GlobalKey<NavigatorState>();
+
   @override
   State<NotesView> createState() => _NotesViewState();
 }
