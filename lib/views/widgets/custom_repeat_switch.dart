@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubits/notes_cubit.dart';
 
-class CustomReminderSwitch extends StatefulWidget {
-  const CustomReminderSwitch({super.key});
+class CustomRepeatSwitch extends StatefulWidget {
+  const CustomRepeatSwitch({super.key});
 
   @override
-  State<CustomReminderSwitch> createState() => _CustomReminderSwitchState();
+  State<CustomRepeatSwitch> createState() => _CustomRepeatSwitchState();
 }
 
-class _CustomReminderSwitchState extends State<CustomReminderSwitch> {
+class _CustomRepeatSwitchState extends State<CustomRepeatSwitch> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NotesCubit, NotesStates>(
@@ -22,7 +22,7 @@ class _CustomReminderSwitchState extends State<CustomReminderSwitch> {
             children: [
               Expanded(
                 child: Text(
-                  'Reminder:',
+                  'Repeat:',
                   style: Theme
                       .of(context)
                       .textTheme
@@ -36,9 +36,9 @@ class _CustomReminderSwitchState extends State<CustomReminderSwitch> {
               ),
               Expanded(
                 child: Switch(
-                  value: cubit.isReminderSwitchOn,
+                  value: cubit.isRepeatSwitchOn,
                   onChanged: (value) {
-                    cubit.changeSwitchState(value: value);
+                    cubit.changeRepeatState(value: value);
                   },
                 ),
               ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 import 'custom_note_color_picker.dart';
 import 'custom_reminder_switch.dart';
+import 'custom_repeat_switch.dart';
 import 'custom_text_form_field.dart';
 
 class CustomBottomSheet extends StatefulWidget {
@@ -46,21 +47,20 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     maxLine: 5,
                   ),
                   const SizedBox(height: 15),
-                  const Padding(
-                    padding: EdgeInsetsDirectional.symmetric(
-                      horizontal: 10,
-                    ),
-                    child: Row(
-                      children: [
-                        CustomNoteColorPicker(),
-                        SizedBox(
-                          width: 50,
-                        ),
-                        CustomReminderSwitch(),
-                      ],
-                    ),
+                   const Row(
+                    children: [
+                      CustomNoteColorPicker(),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      CustomReminderSwitch(),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      CustomRepeatSwitch(),
+                    ],
                   ),
-                  if (cubit.isSwitchOn) ...[
+                  if (cubit.isReminderSwitchOn) ...[
                     const SizedBox(
                       height: 10,
                     ),

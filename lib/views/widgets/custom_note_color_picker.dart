@@ -22,17 +22,17 @@ class _CustomNoteColorPickerState extends State<CustomNoteColorPicker> {
           child: Row(
             children: [
               Expanded(
-                flex: 2,
                 child: Text(
-                  'Select color:',
+                  'Color:',
                   style: Theme
                       .of(context)
                       .textTheme
-                      .bodySmall,
+                      .bodySmall!.copyWith(
+                    fontSize: 12,
+                  ),
                 ),
               ),
               Expanded(
-                flex: 1,
                 child: GestureDetector(
                   onTap: () async {
                     await showDialog(

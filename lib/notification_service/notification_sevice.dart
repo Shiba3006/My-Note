@@ -158,6 +158,6 @@ class NotificationServices {
   }
 }
 
-int createUniqueId (){ // for UniqueId
+int createUniqueId (){ // for Notification UniqueId
   return DateTime.now().millisecondsSinceEpoch.remainder(10000);
 }

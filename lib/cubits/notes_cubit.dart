@@ -141,11 +141,18 @@ class NotesCubit extends Cubit<NotesStates> {
   String? title, subTitle;
   Color? noteColor;
 
-  bool isSwitchOn = false;
+  bool isReminderSwitchOn = false;
 
   void changeSwitchState({required bool value}) {
-    isSwitchOn = value;
+    isReminderSwitchOn = value;
     emit(ChangeSwitchSuccessState());
+  }
+
+  bool isRepeatSwitchOn = false;
+
+  void changeRepeatState({required bool value}) {
+    isRepeatSwitchOn = value;
+    emit(ChangeRepeatSuccessState());
   }
 
   TextEditingController dateController = TextEditingController();

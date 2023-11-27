@@ -39,7 +39,7 @@ class _CustomFabState extends State<CustomFab> {
               title: cubit.title!,
               body: cubit.subTitle!,
             );
-            cubit.isSwitchOn = false;
+            cubit.isReminderSwitchOn = false;
             cubit.dateController.text = '';
             cubit.timeController.text = '';
           } else {
