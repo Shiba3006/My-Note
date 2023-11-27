@@ -40,7 +40,7 @@ class _RoaaViewState extends State<RoaaView> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Expanded(
                   child: Text(
                       'بحبك و مش عاوزك تزعلي مني ',

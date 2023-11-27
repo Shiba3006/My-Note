@@ -1,0 +1,23 @@
+[INFO] Generating build script...
+[INFO] Generating build script completed, took 615ms
+
+[INFO] Precompiling build script......
+[INFO] Precompiling build script... completed, took 12.3s
+
+[INFO] Initializing inputs
+[INFO] Building new asset graph...
+[INFO] Building new asset graph completed, took 1.9s
+
+[INFO] Checking for unexpected pre-existing outputs....
+[INFO] Found 1 declared outputs which already exist on disk. This is likely because the`.dart_tool/build` folder was deleted, or you are submitting generated files to your source repository.
+
+Delete these files?
+1 - Delete
+2 - Cancel build
+3 - List conflicts
+Unrecognized option , a number between 1 and 3 expected
+
+Delete these files?
+1 - Delete
+2 - Cancel build
+3 - List conflicts
