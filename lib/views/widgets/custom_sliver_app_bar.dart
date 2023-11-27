@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/views/setting_view.dart';
 
 import '../../cubits/notes_cubit.dart';
-import '../test_notification_view.dart';
 
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -25,17 +24,6 @@ class CustomSliverAppBar extends StatelessWidget {
               Icons.settings,
             ),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                cubit.navigateTo(context, const TestLocalNotification());
-              },
-              icon: const Icon(
-                Icons.search,
-                size: 30,
-              ),
-            ),
-          ],
           centerTitle: true,
           pinned: true,
           backgroundColor: NotesCubit

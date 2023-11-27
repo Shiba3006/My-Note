@@ -68,7 +68,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       prefixIcon: Icons.date_range,
                       hint: 'Date Reminder',
                       onSaved: (value) {
-                        cubit.date = value;
+                        cubit.dateString = value;
                       },
                       onTap: () {
                         showDatePicker(
@@ -98,7 +98,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       prefixIcon: Icons.watch_later,
                       hint: 'time Reminder',
                       onSaved: (value) {
-                        cubit.time = value;
+                        cubit.timeString = value;
                       },
                     ),
                   ],

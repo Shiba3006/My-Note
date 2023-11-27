@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../views/notes_view.dart';
 
 class NotificationServices {
+
   static Future<void> initializeNotification() async {
     await AwesomeNotifications().initialize(
         null,
@@ -80,5 +81,36 @@ class NotificationServices {
             builder: (_) => const NotesView()),
       );
     }
+  }
+
+  static Future<void> createScheduleNotification(
+      DateTime dateTime,
+      TimeOfDay timeOfDay,
+      ) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 4,
+        channelKey: 'schedule_channel',
+        title: 'Schedule Notification',
+        body: 'Schedule Notification Body',
+        notificationLayout: NotificationLayout.Default,
+      ),
+      actionButtons: [
+        NotificationActionButton(
+          key: 'MARK_DONE',
+          label: 'Mark Done',
+        ),
+      ],
+      schedule: NotificationCalendar(
+        year: dateTime.year,
+        month: dateTime.month,
+        day: dateTime.day,
+        hour: timeOfDay.hour,
+        minute: timeOfDay.minute,
+        second: 0,
+        millisecond: 0,
+        repeats: true,
+      ),
+    );
   }
 }

@@ -3,17 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 import 'package:my_note/views/notes_view.dart';
-import 'awesome_notification.dart';
 import 'constants/constants.dart';
 import 'cubits/bloc_observer.dart';
 import 'models/note_model.dart';
+import 'notification_service/notification_sevice.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
 
-  // set the icon to null if you want to use the default app ico
+  // set the icon to null if you want to use the default app icon
   await NotificationServices.initializeNotification();
 
   Hive.registerAdapter(NoteModelAdapter());

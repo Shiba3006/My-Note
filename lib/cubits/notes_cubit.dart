@@ -149,20 +149,24 @@ class NotesCubit extends Cubit<NotesStates> {
 
   TextEditingController dateController = TextEditingController();
   TextEditingController timeController = TextEditingController();
-  String? date;
-  String? time;
+  DateTime? date;
+  TimeOfDay? time;
+  String? dateString ;
+  String? timeString;
 
   void setDate ({required DateTime newDate}){
-    date = formatDate(date: newDate);
-    dateController.text = date!;
-    debugPrint(date);
+    date = newDate;
+    dateString = formatDate(date: date!);
+    dateController.text = dateString!;
+    debugPrint(dateString);
     emit(DateSetSuccessState());
   }
 
   void setTime ({required TimeOfDay newTime, required BuildContext context}){
-    time = newTime.format(context).toString();
-    timeController.text = time!;
-    debugPrint(time);
+    time = newTime;
+    timeString = time!.format(context);
+    timeController.text = timeString!;
+    debugPrint(timeString);
     emit(TimeSetSuccessState());
   }
 

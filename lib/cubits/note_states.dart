@@ -97,3 +97,7 @@ class DateSetSuccessState extends NotesStates {}
 
 // set reminder time
 class TimeSetSuccessState extends NotesStates {}
+
+class DateChangedSuccessState extends NotesStates {}
+
+class TimeChangedSuccessState extends NotesStates {}
