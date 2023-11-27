@@ -46,12 +46,15 @@ class NotesCubit extends Cubit<NotesStates> {
     required String subTitle,
     required String date,
     required int color,
+    String? notificationDate,
+    String? notificationTime,
   }) {
     emit(UpdateNoteLoadingState());
     myBox
         .putAt(
       index,
-      NoteModel(title: title, subTitle: subTitle, date: date, color: color),
+      NoteModel(title: title, subTitle: subTitle, date: date, color: color
+      ,notificationDate: notificationDate, notificationTime: notificationTime),
     )
         .then((value) {
       emit(AddNoteSuccessState());
