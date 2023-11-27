@@ -34,6 +34,8 @@ class _CustomFabState extends State<CustomFab> {
                   date: NotesCubit.get(context).customizeDateNowFormat(),
                   color: cubit.noteColor?.value ??
                       NotesCubit.get(context).currentColor!.value,
+                  notificationDate: cubit.date == null ? null : cubit.dateString,
+                  notificationTime: cubit.time == null? null : cubit.timeString,
                 ));
             cubit.createNotification(
                 dateTime: cubit.date!,
