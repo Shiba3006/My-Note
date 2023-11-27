@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_note/notification_service/notification_sevice.dart';
 import '../constants/constants.dart';
 import '../models/note_model.dart';
 
@@ -16,9 +17,9 @@ class NotesCubit extends Cubit<NotesStates> {
   List<NoteModel> notesList = [];
 
   void addNote({required NoteModel notesModel}) {
-    if(notesModel.title == 'Roaa' && notesModel.subTitle == 'Roaa'){
+    if (notesModel.title == 'Roaa' && notesModel.subTitle == 'Roaa') {
       emit(RoaaSuccessState());
-    } else{
+    } else {
       emit(AddNoteLoadingState());
       myBox.put(notesModel.title, notesModel).then((value) {
         emit(AddNoteSuccessState());
@@ -75,14 +76,16 @@ class NotesCubit extends Cubit<NotesStates> {
     currentColor = Color(newColorValue);
     myColorBox.put('newColor', newColorValue).then((value) {
       emit(ChangeAppColorSuccessState());
-    }).catchError((err){
+    }).catchError((err) {
       emit(ChangeAppColorFailureState(err.toString()));
     });
   }
 
-  void getAppColor (){ // myColorBox.values.toString()
+  void getAppColor() {
+    // myColorBox.values.toString()
     try {
-      currentColor = Color(myColorBox.get('newColor', defaultValue: 0xffeb34de)!);
+      currentColor =
+          Color(myColorBox.get('newColor', defaultValue: 0xffeb34de)!);
       emit(GetAppColorSuccessState());
     } on Exception catch (err) {
       emit(GetAppColorFailureState(err.toString()));
@@ -100,8 +103,7 @@ class NotesCubit extends Cubit<NotesStates> {
 
   String customizeDateNowFormat() {
     DateTime today = DateTime.now();
-    String date =
-        "${today.hour.toString().padLeft(2, '0')}"
+    String date = "${today.hour.toString().padLeft(2, '0')}"
         ":${today.minute.toString().padLeft(2, '0')}"
         "  ${today.year.toString()}"
         "-${today.month.toString().padLeft(2, '0')}"
@@ -111,17 +113,17 @@ class NotesCubit extends Cubit<NotesStates> {
 
   String formatDate({required DateTime date}) {
     return '${date.year.toString()}'
-        '-${date.month.toString().padLeft(2,'0')}'
-        '-${date.day.toString().padLeft(2,'0')}';
+        '-${date.month.toString().padLeft(2, '0')}'
+        '-${date.day.toString().padLeft(2, '0')}';
   }
 
   bool isBottomSheetOpen = false;
   Icon? fabIcon = const Icon(FontAwesomeIcons.pencil);
 
-  void changeBottomSheetState ({
+  void changeBottomSheetState({
     required bool isBottomSheetOpen,
-    required Icon icon ,
-  }){
+    required Icon icon,
+  }) {
     this.isBottomSheetOpen = isBottomSheetOpen;
     fabIcon = icon;
     emit(BottomSheetChangedSuccessState());
@@ -129,7 +131,7 @@ class NotesCubit extends Cubit<NotesStates> {
 
   Color? color;
 
-  void changeColor ({required Color newColor}){
+  void changeColor({required Color newColor}) {
     color = newColor;
     emit(ChangeColorSuccessState());
   }
@@ -142,7 +144,7 @@ class NotesCubit extends Cubit<NotesStates> {
 
   bool isSwitchOn = false;
 
-  void changeSwitchState ({required bool value}){
+  void changeSwitchState({required bool value}) {
     isSwitchOn = value;
     emit(ChangeSwitchSuccessState());
   }
@@ -151,10 +153,11 @@ class NotesCubit extends Cubit<NotesStates> {
   TextEditingController timeController = TextEditingController();
   DateTime? date;
   TimeOfDay? time;
-  String? dateString ;
+  String? dateString;
+
   String? timeString;
 
-  void setDate ({required DateTime newDate}){
+  void setDate({required DateTime newDate}) {
     date = newDate;
     dateString = formatDate(date: date!);
     dateController.text = dateString!;
@@ -162,7 +165,7 @@ class NotesCubit extends Cubit<NotesStates> {
     emit(DateSetSuccessState());
   }
 
-  void setTime ({required TimeOfDay newTime, required BuildContext context}){
+  void setTime({required TimeOfDay newTime, required BuildContext context}) {
     time = newTime;
     timeString = time!.format(context);
     timeController.text = timeString!;
@@ -170,4 +173,19 @@ class NotesCubit extends Cubit<NotesStates> {
     emit(TimeSetSuccessState());
   }
 
+  void createNotification({
+    required DateTime dateTime,
+    required TimeOfDay timeOfDay,
+    required String title,
+    required String body,
+}) {
+    NotificationServices.createScheduleNotification(
+            dateTime, timeOfDay, title, body)
+        .then((value) {
+          emit(NotificationCreatedSuccessState());
+    })
+        .catchError((err) {
+          emit(NotificationCreatedFailureState(err.toString()));
+    });
+  }
 }

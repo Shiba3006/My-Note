@@ -98,6 +98,16 @@ class DateSetSuccessState extends NotesStates {}
 // set reminder time
 class TimeSetSuccessState extends NotesStates {}
 
+// change schedule reminder date
 class DateChangedSuccessState extends NotesStates {}
 
+// change schedule reminder time
 class TimeChangedSuccessState extends NotesStates {}
+
+// create schedule notification
+class NotificationCreatedSuccessState extends NotesStates {}
+class NotificationCreatedFailureState extends NotesStates {
+  final String err;
+
+  NotificationCreatedFailureState(this.err);
+}

@@ -86,13 +86,15 @@ class NotificationServices {
   static Future<void> createScheduleNotification(
       DateTime dateTime,
       TimeOfDay timeOfDay,
+      String title,
+      String body,
       ) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 4,
         channelKey: 'schedule_channel',
-        title: 'Schedule Notification',
-        body: 'Schedule Notification Body',
+        title: title,
+        body: body,
         notificationLayout: NotificationLayout.Default,
       ),
       actionButtons: [

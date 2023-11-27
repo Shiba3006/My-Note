@@ -27,7 +27,7 @@ class _CustomFabState extends State<CustomFab> {
         if (cubit.isBottomSheetOpen) {
           if (cubit.formKey.currentState!.validate()) {
             cubit.formKey.currentState!.save();
-            NotesCubit.get(context).addNote(
+            cubit.addNote(
                 notesModel: NoteModel(
                   title: cubit.title!,
                   subTitle: cubit.subTitle!,
@@ -35,6 +35,13 @@ class _CustomFabState extends State<CustomFab> {
                   color: cubit.noteColor?.value ??
                       NotesCubit.get(context).currentColor!.value,
                 ));
+            cubit.createNotification(
+                dateTime: cubit.date!,
+                timeOfDay: cubit.time!,
+                title: cubit.title!,
+                body: cubit.subTitle!,
+            );
+            cubit.isSwitchOn = false;
             cubit.dateController.text = '';
             cubit.timeController.text = '';
           } else {
