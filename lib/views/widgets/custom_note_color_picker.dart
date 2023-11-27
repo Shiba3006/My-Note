@@ -34,15 +34,11 @@ class _CustomNoteColorPickerState extends State<CustomNoteColorPicker> {
               Expanded(
                 flex: 1,
                 child: GestureDetector(
-                  onTap: () {
-                    showDialog(
+                  onTap: () async {
+                    await showDialog(
                       context: context,
                       builder: (context) =>
-                          CustomAlertDialog(
-                              colorFunction: (newColor) {
-                                cubit.changeColor(newColor: newColor);
-                              }
-                          ),
+                          const CustomAlertDialog(),
                     );
                   },
                   child: Container(
@@ -50,9 +46,6 @@ class _CustomNoteColorPickerState extends State<CustomNoteColorPicker> {
                     height: 35,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      // borderRadius: BorderRadius.circular(
-                      //   14,
-                      // ),
                       color: cubit.noteColor ?? cubit.currentColor,
                     ),
                   ),

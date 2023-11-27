@@ -12,7 +12,7 @@ class NotesCubit extends Cubit<NotesStates> {
 
   static NotesCubit get(context) => BlocProvider.of(context);
 
-  Color? currentColor;
+  Color currentColor = Colors.purpleAccent;
 
   List<NoteModel> notesList = [];
 
@@ -75,9 +75,12 @@ class NotesCubit extends Cubit<NotesStates> {
     });
   }
 
-  void changeAppColor({required int newColorValue}) {
-    currentColor = Color(newColorValue);
-    myColorBox.put('newColor', newColorValue).then((value) {
+  Color? color;
+
+  void changeAppColor({required Color newColor}) {
+    color = newColor;
+    emit(ChangeColorSuccessState());
+    myColorBox.put('newColor', newColor.value).then((value) {
       emit(ChangeAppColorSuccessState());
     }).catchError((err) {
       emit(ChangeAppColorFailureState(err.toString()));
@@ -130,13 +133,6 @@ class NotesCubit extends Cubit<NotesStates> {
     this.isBottomSheetOpen = isBottomSheetOpen;
     fabIcon = icon;
     emit(BottomSheetChangedSuccessState());
-  }
-
-  Color? color;
-
-  void changeColor({required Color newColor}) {
-    color = newColor;
-    emit(ChangeColorSuccessState());
   }
 
   final scaffoldKey = GlobalKey<ScaffoldState>();

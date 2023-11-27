@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
               // scaffoldBackgroundColor: primaryColor[50],
               fontFamily: 'Poppins',
               colorScheme: ColorScheme.fromSeed(
-                seedColor: NotesCubit.get(context).currentColor ?? Colors.green,
+                seedColor: NotesCubit.get(context).currentColor ,
                 //MainCubit.get(context).getAppColor() ?? Colors.green,
               ),
               useMaterial3: true,

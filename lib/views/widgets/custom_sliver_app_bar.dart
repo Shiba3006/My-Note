@@ -5,9 +5,14 @@ import 'package:my_note/views/setting_view.dart';
 import '../../cubits/notes_cubit.dart';
 
 
-class CustomSliverAppBar extends StatelessWidget {
+class CustomSliverAppBar extends StatefulWidget {
   const CustomSliverAppBar({super.key});
 
+  @override
+  State<CustomSliverAppBar> createState() => _CustomSliverAppBarState();
+}
+
+class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NotesCubit, NotesStates>(

@@ -7,17 +7,11 @@ import 'package:my_note/views/widgets/notes_view_body.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-class NotesView extends StatefulWidget {
+class NotesView extends StatelessWidget {
   const NotesView({super.key});
 
   static final GlobalKey<NavigatorState> navigatorKey =
   GlobalKey<NavigatorState>();
-
-  @override
-  State<NotesView> createState() => _NotesViewState();
-}
-
-class _NotesViewState extends State<NotesView> {
 
   @override
   Widget build(BuildContext context) {

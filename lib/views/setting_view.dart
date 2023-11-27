@@ -10,7 +10,11 @@ class SettingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NotesCubit, NotesStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is ChangeColorSuccessState){
+          NotesCubit.get(context).currentColor = NotesCubit.get(context).color!;
+        }
+      },
       builder: (context, state) {
         return const Scaffold(
           body: SettingViewBody(),

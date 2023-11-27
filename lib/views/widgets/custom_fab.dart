@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../cubits/notes_cubit.dart';
@@ -17,9 +16,6 @@ class CustomFab extends StatefulWidget {
 class _CustomFabState extends State<CustomFab> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NotesCubit, NotesStates>(
-  listener: (context, state) {},
-  builder: (context, state) {
     var cubit = NotesCubit.get(context);
     return FloatingActionButton(
       child: cubit.fabIcon,
@@ -33,15 +29,15 @@ class _CustomFabState extends State<CustomFab> {
                   subTitle: cubit.subTitle!,
                   date: NotesCubit.get(context).customizeDateNowFormat(),
                   color: cubit.noteColor?.value ??
-                      NotesCubit.get(context).currentColor!.value,
+                      NotesCubit.get(context).currentColor.value,
                   notificationDate: cubit.date == null ? null : cubit.dateString,
                   notificationTime: cubit.time == null? null : cubit.timeString,
                 ));
             cubit.createNotification(
-                dateTime: cubit.date!,
-                timeOfDay: cubit.time!,
-                title: cubit.title!,
-                body: cubit.subTitle!,
+              dateTime: cubit.date!,
+              timeOfDay: cubit.time!,
+              title: cubit.title!,
+              body: cubit.subTitle!,
             );
             cubit.isSwitchOn = false;
             cubit.dateController.text = '';
@@ -71,7 +67,5 @@ class _CustomFabState extends State<CustomFab> {
         }
       },
     );
-  },
-);
   }
 }

@@ -3,37 +3,48 @@ import 'package:flutter/material.dart';
 import '../views/notes_view.dart';
 
 class NotificationServices {
-
   static Future<void> initializeNotification() async {
     await AwesomeNotifications().initialize(
-        null,
-        [
-          NotificationChannel(
-            channelKey: 'basic_channel',
-            channelName: 'Basic notifications',
-            channelDescription: 'Notification channel for basic tests',
-            defaultColor: Colors.blue,
-            importance: NotificationImportance.Max,
-            channelShowBadge: true,
-            onlyAlertOnce: true,
-            playSound: true,
-            criticalAlerts: true,
-          ),
-          NotificationChannel(
-            channelKey: 'schedule_channel',
-            channelName: 'Schedule notifications',
-            channelDescription:
-            'Notification channel for schedule notifications',
-            defaultColor: Colors.red,
-            importance: NotificationImportance.Max,
-            channelShowBadge: true,
-            onlyAlertOnce: true,
-            playSound: true,
-            criticalAlerts: true,
-            locked: true,
-          ),
-        ],
-        debug: true,
+      null,
+      [
+        NotificationChannel(
+          channelKey: 'basic_channel',
+          channelName: 'Basic notifications',
+          channelDescription: 'Notification channel for basic tests',
+          defaultColor: Colors.blue,
+          importance: NotificationImportance.Max,
+          channelShowBadge: true,
+          onlyAlertOnce: true,
+          playSound: true,
+          criticalAlerts: true,
+        ),
+        NotificationChannel(
+          channelKey: 'schedule_channel',
+          channelName: 'Schedule notifications',
+          channelDescription: 'Notification channel for schedule notifications',
+          defaultColor: Colors.red,
+          importance: NotificationImportance.Max,
+          channelShowBadge: true,
+          onlyAlertOnce: true,
+          playSound: true,
+          criticalAlerts: true,
+          locked: true,
+        ),
+        NotificationChannel(
+          channelKey: 'repeating_channel',
+          channelName: 'Repeating notifications',
+          channelDescription:
+              'Notification channel for Repeating notifications',
+          defaultColor: Colors.amber,
+          importance: NotificationImportance.Max,
+          channelShowBadge: true,
+          onlyAlertOnce: true,
+          playSound: true,
+          criticalAlerts: true,
+          locked: true,
+        ),
+      ],
+      debug: true,
     );
 
     await AwesomeNotifications()
@@ -77,21 +88,20 @@ class NotificationServices {
     final payload = receivedNotification.payload ?? {};
     if (payload['navigate'] == 'true') {
       NotesView.navigatorKey.currentState?.push(
-        MaterialPageRoute(
-            builder: (_) => const NotesView()),
+        MaterialPageRoute(builder: (_) => const NotesView()),
       );
     }
   }
 
-  static Future<void> createScheduleNotification(
-      DateTime dateTime,
-      TimeOfDay timeOfDay,
-      String title,
-      String body,
-      ) async {
+  static Future<void> createScheduleNotification(// for schedule reminder
+    DateTime dateTime,
+    TimeOfDay timeOfDay,
+    String title,
+    String body,
+  ) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: 4,
+        id: createUniqueId(),
         channelKey: 'schedule_channel',
         title: title,
         body: body,
@@ -119,4 +129,35 @@ class NotificationServices {
     );
   }
 
+  static Future<void> createRepeatingNotification( // for repeating reminder
+    String title,
+    String body,
+  ) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: createUniqueId(),
+        channelKey: 'schedule_channel',
+        title: title,
+        body: body,
+        notificationLayout: NotificationLayout.Default,
+      ),
+      actionButtons: [
+        NotificationActionButton(
+          key: 'MARK_DONE',
+          label: 'Mark Done',
+        ),
+      ],
+      schedule: NotificationInterval(
+        interval: 60,
+        repeats: true,
+        allowWhileIdle: true,
+        preciseAlarm: true,
+        timeZone: AwesomeNotifications.localTimeZoneIdentifier,
+      ),
+    );
+  }
+}
+
+int createUniqueId (){ // for UniqueId
+  return DateTime.now().millisecondsSinceEpoch.remainder(10000);
 }
