@@ -92,8 +92,11 @@ class ChangeColorSuccessState extends NotesStates {}
 // change Switch state
 class ChangeSwitchSuccessState extends NotesStates {}
 
-// change Switch state
+// change Reminder Switch state
 class ChangeRepeatSuccessState extends NotesStates {}
+
+// change Repeat Switch state
+class ChangeSlideValueSuccessState extends NotesStates {}
 
 // set reminder date
 class DateSetSuccessState extends NotesStates {}
@@ -108,9 +111,17 @@ class DateChangedSuccessState extends NotesStates {}
 class TimeChangedSuccessState extends NotesStates {}
 
 // create schedule notification
-class NotificationCreatedSuccessState extends NotesStates {}
-class NotificationCreatedFailureState extends NotesStates {
+class ScheduleNotificationCreatedSuccessState extends NotesStates {}
+class ScheduleNotificationCreatedFailureState extends NotesStates {
   final String err;
 
-  NotificationCreatedFailureState(this.err);
+  ScheduleNotificationCreatedFailureState(this.err);
+}
+
+// create repeat notification
+class RepeatNotificationCreatedSuccessState extends NotesStates {}
+class RepeatNotificationCreatedFailureState extends NotesStates {
+  final String err;
+
+  RepeatNotificationCreatedFailureState(this.err);
 }

@@ -53,8 +53,13 @@ class NotesCubit extends Cubit<NotesStates> {
     myBox
         .putAt(
       index,
-      NoteModel(title: title, subTitle: subTitle, date: date, color: color
-      ,notificationDate: notificationDate, notificationTime: notificationTime),
+      NoteModel(
+          title: title,
+          subTitle: subTitle,
+          date: date,
+          color: color,
+          notificationDate: notificationDate,
+          notificationTime: notificationTime),
     )
         .then((value) {
       emit(AddNoteSuccessState());
@@ -132,6 +137,11 @@ class NotesCubit extends Cubit<NotesStates> {
   }) {
     this.isBottomSheetOpen = isBottomSheetOpen;
     fabIcon = icon;
+    dateController.text = '';
+    timeController.text = '';
+    isReminderSwitchOn = false;
+    isRepeatSwitchOn = false;
+    currentSlideValue = 0;
     emit(BottomSheetChangedSuccessState());
   }
 
@@ -153,6 +163,13 @@ class NotesCubit extends Cubit<NotesStates> {
   void changeRepeatState({required bool value}) {
     isRepeatSwitchOn = value;
     emit(ChangeRepeatSuccessState());
+  }
+
+  int currentSlideValue = 0;
+
+  void changeSlideValue({required int value}) {
+    currentSlideValue = value;
+    emit(ChangeSlideValueSuccessState());
   }
 
   TextEditingController dateController = TextEditingController();
@@ -179,19 +196,40 @@ class NotesCubit extends Cubit<NotesStates> {
     emit(TimeSetSuccessState());
   }
 
-  void createNotification({
+  void createScheduleNotification({
     required DateTime dateTime,
     required TimeOfDay timeOfDay,
     required String title,
     required String body,
-}) {
-    NotificationServices.createScheduleNotification(
-            dateTime, timeOfDay, title, body)
+  }) {
+    if (date != null && time != null && isReminderSwitchOn) {
+      NotificationServices.createScheduleNotification(
+              dateTime, timeOfDay, title, body)
+          .then((value) {
+        if (isRepeatSwitchOn) {
+          createRepeatingNotification(
+            title: title,
+            body: body,
+            interval: 60, /// add slider value
+          );
+          emit(ScheduleNotificationCreatedSuccessState());
+        }
+      }).catchError((err) {
+        emit(ScheduleNotificationCreatedFailureState(err.toString()));
+      });
+    }
+  }
+
+  void createRepeatingNotification({
+    required String title,
+    required String body,
+    required int interval,
+  }) {
+    NotificationServices.createRepeatingNotification(title, body, interval)
         .then((value) {
-          emit(NotificationCreatedSuccessState());
-    })
-        .catchError((err) {
-          emit(NotificationCreatedFailureState(err.toString()));
+      emit(RepeatNotificationCreatedSuccessState());
+    }).catchError((err) {
+      emit(RepeatNotificationCreatedFailureState(err.toString()));
     });
   }
 }

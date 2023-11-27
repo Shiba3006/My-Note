@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
@@ -47,17 +48,19 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     maxLine: 5,
                   ),
                   const SizedBox(height: 15),
-                   const Row(
+                    Row(
                     children: [
-                      CustomNoteColorPicker(),
-                      SizedBox(
+                      const CustomNoteColorPicker(),
+                      const SizedBox(
                         width: 10,
                       ),
-                      CustomReminderSwitch(),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      CustomRepeatSwitch(),
+                      const CustomReminderSwitch(),
+                      if (cubit.isReminderSwitchOn) ...[
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const CustomRepeatSwitch(),
+                      ],
                     ],
                   ),
                   if (cubit.isReminderSwitchOn) ...[
@@ -99,6 +102,21 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       hint: 'time Reminder',
                       onSaved: (value) {
                         cubit.timeString = value;
+                      },
+                    ),
+                  ],
+                  if (cubit.isRepeatSwitchOn) ...[
+                    const SizedBox(height: 15),
+                    CupertinoSlidingSegmentedControl(
+                      groupValue: cubit.currentSlideValue,
+                      children: const <int, Widget>{
+                        0: Text('Daily'),
+                        1: Text('Weekly'),
+                        2: Text('Monthly'),
+                        3: Text('Yearly'),
+                      },
+                      onValueChanged: (value){
+                        cubit.changeSlideValue(value: value!);
                       },
                     ),
                   ],

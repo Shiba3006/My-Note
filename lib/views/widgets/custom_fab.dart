@@ -33,7 +33,7 @@ class _CustomFabState extends State<CustomFab> {
                   notificationDate: cubit.date == null ? null : cubit.dateString,
                   notificationTime: cubit.time == null? null : cubit.timeString,
                 ));
-            cubit.createNotification(
+            cubit.createScheduleNotification(
               dateTime: cubit.date!,
               timeOfDay: cubit.time!,
               title: cubit.title!,
@@ -61,8 +61,6 @@ class _CustomFabState extends State<CustomFab> {
               isBottomSheetOpen: false,
               icon: const Icon(FontAwesomeIcons.pencil),
             );
-            cubit.dateController.text = '';
-            cubit.timeController.text = '';
           });
         }
       },

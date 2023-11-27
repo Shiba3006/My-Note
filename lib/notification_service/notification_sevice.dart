@@ -93,7 +93,8 @@ class NotificationServices {
     }
   }
 
-  static Future<void> createScheduleNotification(// for schedule reminder
+  static Future<void> createScheduleNotification(
+    // for schedule reminder
     DateTime dateTime,
     TimeOfDay timeOfDay,
     String title,
@@ -129,14 +130,16 @@ class NotificationServices {
     );
   }
 
-  static Future<void> createRepeatingNotification( // for repeating reminder
+  static Future<void> createRepeatingNotification(
+    // for repeating reminder
     String title,
     String body,
+    int interval,
   ) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: createUniqueId(),
-        channelKey: 'schedule_channel',
+        channelKey: 'repeating_channel',
         title: title,
         body: body,
         notificationLayout: NotificationLayout.Default,
@@ -148,7 +151,7 @@ class NotificationServices {
         ),
       ],
       schedule: NotificationInterval(
-        interval: 60,
+        interval: interval,
         repeats: true,
         allowWhileIdle: true,
         preciseAlarm: true,
@@ -158,6 +161,7 @@ class NotificationServices {
   }
 }
 
-int createUniqueId (){ // for Notification UniqueId
+int createUniqueId() {
+  // for Notification UniqueId
   return DateTime.now().millisecondsSinceEpoch.remainder(10000);
 }
