@@ -110,7 +110,11 @@ class NotificationServices {
         second: 0,
         millisecond: 0,
         repeats: true,
+        allowWhileIdle: true,
+        preciseAlarm: true,
+        timeZone: AwesomeNotifications.localTimeZoneIdentifier,
       ),
     );
   }
+
 }

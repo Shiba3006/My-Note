@@ -35,6 +35,8 @@ class _CustomFabState extends State<CustomFab> {
                   color: cubit.noteColor?.value ??
                       NotesCubit.get(context).currentColor!.value,
                 ));
+            cubit.dateController.text = '';
+            cubit.timeController.text = '';
           } else {
             cubit.autoValidateMode = AutovalidateMode.always;
           }
@@ -54,6 +56,8 @@ class _CustomFabState extends State<CustomFab> {
               isBottomSheetOpen: false,
               icon: const Icon(FontAwesomeIcons.pencil),
             );
+            cubit.dateController.text = '';
+            cubit.timeController.text = '';
           });
         }
       },

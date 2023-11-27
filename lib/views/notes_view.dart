@@ -33,7 +33,6 @@ class _NotesViewState extends State<NotesView> {
         }
       },
       builder: (context, state) {
-        var cubit = NotesCubit.get(context);
         return Scaffold(
           key: cubit.scaffoldKey,
           floatingActionButton: const CustomFab(),
