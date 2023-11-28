@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:my_note/cubits/notes_cubit.dart';
 import 'package:my_note/views/widgets/custom_alert_dialog.dart';
@@ -13,6 +14,9 @@ class SettingViewBody extends StatefulWidget {
 class _SettingViewBodyState extends State<SettingViewBody> {
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<NotesCubit, NotesStates>(
+  listener: (context, state) {},
+  builder: (context, state) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -22,10 +26,12 @@ class _SettingViewBodyState extends State<SettingViewBody> {
             height: 50,
           ),
           InkWell(
-            onTap: () async {
-              await showDialog(
+            onTap: () {
+              NotesCubit.get(context).isSetting = true;
+              showDialog(
                   context: context,
-                  builder: (context) => const CustomAlertDialog(),);
+                  builder: (context) => const CustomAlertDialog(),)
+              .then((value) {});
             },
             child: Center(
               child: Container( // color circle to show the picker color.
@@ -44,5 +50,7 @@ class _SettingViewBodyState extends State<SettingViewBody> {
         ],
       ),
     );
+  },
+);
   }
 }

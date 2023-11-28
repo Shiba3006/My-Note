@@ -14,7 +14,7 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
   @override
   Widget build(BuildContext context) {
     return BlockPicker(
-      pickerColor:NotesCubit.get(context).color ?? NotesCubit.get(context).currentColor,
+      pickerColor: NotesCubit.get(context).currentColor,
       // another type
 
       // enableAlpha: false,

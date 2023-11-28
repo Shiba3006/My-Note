@@ -33,9 +33,10 @@ class _CustomNoteColorPickerState extends State<CustomNoteColorPicker> {
                 ),
               ),
               Expanded(
-                child: GestureDetector(
-                  onTap: () async {
-                    await showDialog(
+                child: InkWell(
+                  onTap: () {
+                    cubit.isSetting = false;
+                    showDialog(
                       context: context,
                       builder: (context) =>
                           const CustomAlertDialog(),

@@ -22,14 +22,15 @@ class NotesView extends StatelessWidget {
           NotesCubit.get(context).navigateTo(context, RoaaView());
         } else if (state is GetNoteSuccessState) {
           Navigator.pop(context);
-        } else if (state is ChangeColorSuccessState){
-          cubit.noteColor = NotesCubit.get(context).color;
         }
       },
       builder: (context, state) {
         return Scaffold(
           key: cubit.scaffoldKey,
-          floatingActionButton: const CustomFab(),
+          floatingActionButton: const Opacity(
+              opacity: .5,
+              child: CustomFab(),
+          ),
           body: const NotesViewBody(),
         );
       },

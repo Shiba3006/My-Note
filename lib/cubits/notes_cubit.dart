@@ -16,6 +16,8 @@ class NotesCubit extends Cubit<NotesStates> {
 
   List<NoteModel> notesList = [];
 
+  bool? isSetting;
+
   void addNote({required NoteModel notesModel}) {
     if (notesModel.title == 'Roaa' && notesModel.subTitle == 'Roaa') {
       emit(RoaaSuccessState());
@@ -80,16 +82,19 @@ class NotesCubit extends Cubit<NotesStates> {
     });
   }
 
-  Color? color;
-
   void changeAppColor({required Color newColor}) {
-    color = newColor;
-    emit(ChangeColorSuccessState());
-    myColorBox.put('newColor', newColor.value).then((value) {
-      emit(ChangeAppColorSuccessState());
-    }).catchError((err) {
-      emit(ChangeAppColorFailureState(err.toString()));
-    });
+    if (isSetting!){
+      currentColor = newColor;
+      emit(ChangeColorSuccessState());
+      myColorBox.put('newColor', newColor.value).then((value) {
+        emit(ChangeAppColorSuccessState());
+      }).catchError((err) {
+        emit(ChangeAppColorFailureState(err.toString()));
+      });
+    }else {
+      noteColor = newColor;
+      emit(ChangeColorSuccessState());
+    }
   }
 
   void getAppColor() {
@@ -206,14 +211,12 @@ class NotesCubit extends Cubit<NotesStates> {
       NotificationServices.createScheduleNotification(
               dateTime, timeOfDay, title, body)
           .then((value) {
-        if (isRepeatSwitchOn) {
           createRepeatingNotification(
             title: title,
             body: body,
             interval: 60, /// add slider value
           );
           emit(ScheduleNotificationCreatedSuccessState());
-        }
       }).catchError((err) {
         emit(ScheduleNotificationCreatedFailureState(err.toString()));
       });
@@ -232,4 +235,6 @@ class NotesCubit extends Cubit<NotesStates> {
       emit(RepeatNotificationCreatedFailureState(err.toString()));
     });
   }
+
+
 }
