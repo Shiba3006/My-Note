@@ -125,3 +125,11 @@ class RepeatNotificationCreatedFailureState extends NotesStates {
 
   RepeatNotificationCreatedFailureState(this.err);
 }
+
+// delete notifications
+class NotificationsDeletedSuccessState extends NotesStates {}
+class NotificationDeletedFailureState extends NotesStates {
+  final String err;
+
+  NotificationDeletedFailureState(this.err);
+}

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../views/notes_view.dart';
 
 class NotificationServices {
+
+  static int? _badgeCounter;
+
   static Future<void> initializeNotification() async {
     await AwesomeNotifications().initialize(
       null,
@@ -78,6 +81,7 @@ class NotificationServices {
   // this method to detect if the user dismissed a notification
   static Future<void> onDismissActionReceivedMethod(
       ReceivedAction receivedAction) async {
+    _badgeCounter = 0;
     debugPrint('onDismissActionReceivedMethod');
   }
 
@@ -102,10 +106,11 @@ class NotificationServices {
   ) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: createUniqueId(),
+        id: 8,
         channelKey: 'schedule_channel',
         title: title,
         body: body,
+        badge: _badgeCounter,
         notificationLayout: NotificationLayout.Default,
       ),
       actionButtons: [
@@ -138,11 +143,12 @@ class NotificationServices {
   ) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: createUniqueId(),
+        id: 88,
         channelKey: 'repeating_channel',
         title: title,
         body: body,
         notificationLayout: NotificationLayout.Default,
+        badge: _badgeCounter,
       ),
       actionButtons: [
         NotificationActionButton(
@@ -159,9 +165,13 @@ class NotificationServices {
       ),
     );
   }
+
+  static Future<void> cancelAllNotifications()async {
+    await AwesomeNotifications().cancelAll();
+  }
 }
 
-int createUniqueId() {
-  // for Notification UniqueId
-  return DateTime.now().millisecondsSinceEpoch.remainder(10000);
-}
+// int createUniqueId() {
+//   // for Notification UniqueId
+//   return DateTime.now().millisecondsSinceEpoch.remainder(10000);
+// }
