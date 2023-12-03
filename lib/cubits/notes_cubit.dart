@@ -46,7 +46,6 @@ class NotesCubit extends Cubit<NotesStates> {
     required int index,
     required String title,
     required String subTitle,
-    required String date,
     required int color,
     String? notificationDate,
     String? notificationTime,
@@ -58,10 +57,11 @@ class NotesCubit extends Cubit<NotesStates> {
       NoteModel(
           title: title,
           subTitle: subTitle,
-          date: date,
+          date: DateTime.now().toString(),
           color: color,
           notificationDate: notificationDate,
-          notificationTime: notificationTime),
+          notificationTime: notificationTime,
+      ),
     )
         .then((value) {
       emit(AddNoteSuccessState());
@@ -77,6 +77,7 @@ class NotesCubit extends Cubit<NotesStates> {
     myBox.deleteAt(index).then((value) {
       emit(DeleteNoteSuccessState());
       getNotes();
+      deleteScheduleNotification();
     }).catchError((err) {
       emit(DeleteNoteFailureState(err.toString()));
     });
@@ -145,13 +146,15 @@ class NotesCubit extends Cubit<NotesStates> {
     dateController.text = '';
     timeController.text = '';
     isReminderSwitchOn = false;
-    isRepeatSwitchOn = false;
     currentSlideValue = 0;
     emit(BottomSheetChangedSuccessState());
   }
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  final GlobalKey<FormState> formKey = GlobalKey();
+  final scaffoldKey = GlobalKey<ScaffoldState>(); // To activate bottomSheet.
+
+  final GlobalKey<FormState> bottomSheetFormKey = GlobalKey(); // To validate in bottomSheet.
+
+
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
   Color? noteColor;
@@ -163,12 +166,10 @@ class NotesCubit extends Cubit<NotesStates> {
     emit(ChangeSwitchSuccessState());
   }
 
-  bool isRepeatSwitchOn = false;
-
-  void changeRepeatState({required bool value}) {
-    isRepeatSwitchOn = value;
-    emit(ChangeRepeatSuccessState());
-  }
+  // void changeRepeatState({required bool value}) {
+  //   isRepeatSwitchOn = value;
+  //   emit(ChangeRepeatSuccessState());
+  // }
 
   int currentSlideValue = 0;
 
@@ -182,7 +183,6 @@ class NotesCubit extends Cubit<NotesStates> {
   DateTime? date;
   TimeOfDay? time;
   String? dateString;
-
   String? timeString;
 
   void setDate({required DateTime newDate}) {
@@ -207,17 +207,15 @@ class NotesCubit extends Cubit<NotesStates> {
     required String title,
     required String body,
   }) {
-    if (date != null && time != null && isReminderSwitchOn) {
+    if (date != null && time != null) {
       NotificationServices.createScheduleNotification(
               dateTime, timeOfDay, title, body)
           .then((value) {
-        createRepeatingNotification(
-          title: title,
-          body: body,
-          interval: 60,
-
-          /// add slider value
-        );
+        // createRepeatingNotification(
+        //   title: title,
+        //   body: body,
+        //   interval: 60,
+        // );
         emit(ScheduleNotificationCreatedSuccessState());
       }).catchError((err) {
         emit(ScheduleNotificationCreatedFailureState(err.toString()));
@@ -225,18 +223,18 @@ class NotesCubit extends Cubit<NotesStates> {
     }
   }
 
-  void createRepeatingNotification({
-    required String title,
-    required String body,
-    required int interval,
-  }) {
-    NotificationServices.createRepeatingNotification(title, body, interval)
-        .then((value) {
-      emit(RepeatNotificationCreatedSuccessState());
-    }).catchError((err) {
-      emit(RepeatNotificationCreatedFailureState(err.toString()));
-    });
-  }
+  // void createRepeatingNotification({
+  //   required String title,
+  //   required String body,
+  //   required int interval,
+  // }) {
+  //   NotificationServices.createRepeatingNotification(title, body, interval)
+  //       .then((value) {
+  //     emit(RepeatNotificationCreatedSuccessState());
+  //   }).catchError((err) {
+  //     emit(RepeatNotificationCreatedFailureState(err.toString()));
+  //   });
+  // }
 
   void deleteScheduleNotification() {
     NotificationServices.cancelAllNotifications().then((value) {

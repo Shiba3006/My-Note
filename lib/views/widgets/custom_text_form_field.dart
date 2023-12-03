@@ -9,6 +9,7 @@ class CustomTextFormField extends StatefulWidget {
     this.prefixIcon,
     this.onTap,
     this.enabled = true,
+    this.initialValue,
   });
 
   final String hint;
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatefulWidget {
   final IconData? prefixIcon;
   final void Function()? onTap;
   final bool? enabled ;
+  final String? initialValue ;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -35,6 +37,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         return null;
       },
       onTap: widget.onTap,
+      initialValue: widget.initialValue,
       controller: widget.controller,
       onSaved: widget.onSaved,
       maxLines: widget.maxLine,

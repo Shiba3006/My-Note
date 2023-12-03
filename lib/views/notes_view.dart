@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class NotesView extends StatelessWidget {
-  const NotesView({super.key});
+  const NotesView({super.key,});
 
   static final GlobalKey<NavigatorState> navigatorKey =
   GlobalKey<NavigatorState>();

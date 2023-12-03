@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 import 'custom_note_color_picker.dart';
 import 'custom_reminder_switch.dart';
-import 'custom_repeat_switch.dart';
 import 'custom_text_form_field.dart';
 
 class CustomBottomSheet extends StatefulWidget {
@@ -25,7 +23,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Form(
-              key: cubit.formKey,
+              key: cubit.bottomSheetFormKey,
               autovalidateMode: cubit.autoValidateMode,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -48,19 +46,13 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     maxLine: 5,
                   ),
                   const SizedBox(height: 15),
-                    Row(
+                    const Row(
                     children: [
-                      const CustomNoteColorPicker(),
-                      const SizedBox(
+                      CustomNoteColorPicker(),
+                      SizedBox(
                         width: 10,
                       ),
-                      const CustomReminderSwitch(),
-                      if (cubit.isReminderSwitchOn) ...[
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const CustomRepeatSwitch(),
-                      ],
+                      CustomReminderSwitch(),
                     ],
                   ),
                   if (cubit.isReminderSwitchOn) ...[
@@ -102,21 +94,6 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       hint: 'time Reminder',
                       onSaved: (value) {
                         cubit.timeString = value;
-                      },
-                    ),
-                  ],
-                  if (cubit.isRepeatSwitchOn) ...[
-                    const SizedBox(height: 15),
-                    CupertinoSlidingSegmentedControl(
-                      groupValue: cubit.currentSlideValue,
-                      children: const <int, Widget>{
-                        0: Text('Daily'),
-                        1: Text('Weekly'),
-                        2: Text('Monthly'),
-                        3: Text('Yearly'),
-                      },
-                      onValueChanged: (value){
-                        cubit.changeSlideValue(value: value!);
                       },
                     ),
                   ],

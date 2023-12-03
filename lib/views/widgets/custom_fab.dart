@@ -21,8 +21,8 @@ class _CustomFabState extends State<CustomFab> {
       child: cubit.fabIcon,
       onPressed: () {
         if (cubit.isBottomSheetOpen) {
-          if (cubit.formKey.currentState!.validate()) {
-            cubit.formKey.currentState!.save();
+          if (cubit.bottomSheetFormKey.currentState!.validate()) {
+            cubit.bottomSheetFormKey.currentState!.save();
             cubit.addNote(
                 notesModel: NoteModel(
                   title: cubit.title!,
@@ -33,15 +33,14 @@ class _CustomFabState extends State<CustomFab> {
                   notificationDate: cubit.date == null ? null : cubit.dateString,
                   notificationTime: cubit.time == null? null : cubit.timeString,
                 ));
-            cubit.createScheduleNotification(
-              dateTime: cubit.date!,
-              timeOfDay: cubit.time!,
-              title: cubit.title!,
-              body: cubit.subTitle!,
-            );
-            cubit.isReminderSwitchOn = false;
-            cubit.dateController.text = '';
-            cubit.timeController.text = '';
+            if(cubit.date != null && cubit.time !=null){
+              cubit.createScheduleNotification(
+                dateTime: cubit.date!,
+                timeOfDay: cubit.time!,
+                title: cubit.title!,
+                body: cubit.subTitle!,
+              );
+            }
           } else {
             cubit.autoValidateMode = AutovalidateMode.always;
           }
