@@ -39,11 +39,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              // scaffoldBackgroundColor: primaryColor[50],
               fontFamily: 'Poppins',
               colorScheme: ColorScheme.fromSeed(
                 seedColor: NotesCubit.get(context).currentColor ,
-                //MainCubit.get(context).getAppColor() ?? Colors.green,
               ),
               useMaterial3: true,
             ),

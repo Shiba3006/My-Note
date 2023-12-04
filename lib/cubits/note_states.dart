@@ -133,3 +133,6 @@ class NotificationDeletedFailureState extends NotesStates {
 
   NotificationDeletedFailureState(this.err);
 }
+
+// for close bottom sheet after get notes.
+class GetNotesAndBSClosedSuccessState extends NotesStates {}

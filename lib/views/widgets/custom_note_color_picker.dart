@@ -23,13 +23,11 @@ class _CustomNoteColorPickerState extends State<CustomNoteColorPicker> {
             children: [
               Expanded(
                 child: Text(
-                  'Color:',
+                  'Choose color:',
                   style: Theme
                       .of(context)
                       .textTheme
-                      .bodySmall!.copyWith(
-                    fontSize: 12,
-                  ),
+                      .bodySmall,
                 ),
               ),
               Expanded(

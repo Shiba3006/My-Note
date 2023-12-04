@@ -13,10 +13,6 @@ class CustomButton extends StatelessWidget {
         Expanded(
           child:
           ElevatedButton(
-            // style: ButtonStyle(
-            //   backgroundColor:
-            //   MaterialStateProperty.resolveWith((states) => primaryColor[100]),
-            // ),
             onPressed: onPressed,
             child:  Text(
               text,

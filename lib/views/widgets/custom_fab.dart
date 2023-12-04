@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../cubits/notes_cubit.dart';
@@ -17,6 +18,13 @@ class _CustomFabState extends State<CustomFab> {
   @override
   Widget build(BuildContext context) {
     var cubit = NotesCubit.get(context);
+    return BlocConsumer<NotesCubit, NotesStates>(
+  listener: (context, state) {
+    if (state is GetNotesAndBSClosedSuccessState){
+      Navigator.of(context).pop();
+    }
+  },
+  builder: (context, state) {
     return FloatingActionButton(
       child: cubit.fabIcon,
       onPressed: () {
@@ -53,8 +61,7 @@ class _CustomFabState extends State<CustomFab> {
               ?.showBottomSheet(
                 (context) => const CustomBottomSheet(),
             elevation: 20,
-          )
-              .closed
+          ).closed
               .then((value) {
             cubit.changeBottomSheetState(
               isBottomSheetOpen: false,
@@ -64,5 +71,7 @@ class _CustomFabState extends State<CustomFab> {
         }
       },
     );
+  },
+);
   }
 }

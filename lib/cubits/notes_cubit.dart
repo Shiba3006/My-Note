@@ -26,6 +26,7 @@ class NotesCubit extends Cubit<NotesStates> {
       myBox.put(notesModel.title, notesModel).then((value) {
         emit(AddNoteSuccessState());
         getNotes();
+        emit(GetNotesAndBSClosedSuccessState());
       }).catchError((err) {
         emit(AddNoteFailureState(err.toString()));
       });
@@ -146,7 +147,6 @@ class NotesCubit extends Cubit<NotesStates> {
     dateController.text = '';
     timeController.text = '';
     isReminderSwitchOn = false;
-    currentSlideValue = 0;
     emit(BottomSheetChangedSuccessState());
   }
 
@@ -164,18 +164,6 @@ class NotesCubit extends Cubit<NotesStates> {
   void changeSwitchState({required bool value}) {
     isReminderSwitchOn = value;
     emit(ChangeSwitchSuccessState());
-  }
-
-  // void changeRepeatState({required bool value}) {
-  //   isRepeatSwitchOn = value;
-  //   emit(ChangeRepeatSuccessState());
-  // }
-
-  int currentSlideValue = 0;
-
-  void changeSlideValue({required int value}) {
-    currentSlideValue = value;
-    emit(ChangeSlideValueSuccessState());
   }
 
   TextEditingController dateController = TextEditingController();
@@ -222,19 +210,6 @@ class NotesCubit extends Cubit<NotesStates> {
       });
     }
   }
-
-  // void createRepeatingNotification({
-  //   required String title,
-  //   required String body,
-  //   required int interval,
-  // }) {
-  //   NotificationServices.createRepeatingNotification(title, body, interval)
-  //       .then((value) {
-  //     emit(RepeatNotificationCreatedSuccessState());
-  //   }).catchError((err) {
-  //     emit(RepeatNotificationCreatedFailureState(err.toString()));
-  //   });
-  // }
 
   void deleteScheduleNotification() {
     NotificationServices.cancelAllNotifications().then((value) {

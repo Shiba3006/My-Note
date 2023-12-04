@@ -115,6 +115,7 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                               ? cubit.timeString
                               : null,
                     );
+                    Navigator.pop(context);
                   },
                   text: 'Update',
                 ),

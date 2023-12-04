@@ -19,9 +19,7 @@ class NotesView extends StatelessWidget {
     return BlocConsumer<NotesCubit, NotesStates>(
       listener: (context, state) {
         if (state is RoaaSuccessState) {
-          NotesCubit.get(context).navigateTo(context, RoaaView());
-        } else if (state is GetNoteSuccessState) {
-          Navigator.pop(context);
+          NotesCubit.get(context).navigateTo(context, const RoaaView());
         }
       },
       builder: (context, state) {

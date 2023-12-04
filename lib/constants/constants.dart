@@ -8,8 +8,4 @@ const colorBox = 'colors_box';
 late Box<NoteModel> myBox;
 late Box<int> myColorBox;
 
-int createUniqueId (){
-  return DateTime.now().millisecondsSinceEpoch.remainder(100000);
-}
-
 

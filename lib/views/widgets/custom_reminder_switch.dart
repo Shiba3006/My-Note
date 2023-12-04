@@ -22,13 +22,11 @@ class _CustomReminderSwitchState extends State<CustomReminderSwitch> {
             children: [
               Expanded(
                 child: Text(
-                  'Reminder:',
+                  'Set reminder:',
                   style: Theme
                       .of(context)
                       .textTheme
-                      .bodySmall!.copyWith(
-                    fontSize: 10,
-                  ),
+                      .bodySmall,
                 ),
               ),
               const SizedBox(

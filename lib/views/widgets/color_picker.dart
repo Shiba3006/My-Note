@@ -19,19 +19,20 @@ class _BuildColorPickerState extends State<BuildColorPicker> {
 
       // enableAlpha: false,
       // labelTypes: [],
+
       availableColors: const [
         Colors.green,
         Colors.orange,
         Colors.blue,
         Colors.purpleAccent,
-        Colors.yellow,
-        Colors.cyanAccent,
+        Colors.deepPurple,
+        Colors.indigo,
         Colors.purple,
         Colors.red,
         Colors.deepOrange,
         Colors.teal,
         Colors.indigoAccent,
-        Colors.amber,
+        Colors.lightGreen,
         Colors.cyan,
         Colors.blueGrey,
         Colors.brown,

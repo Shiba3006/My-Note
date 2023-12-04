@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_note/views/setting_view.dart';
-
+import 'package:my_note/views/widgets/custom_alert_dialog.dart';
 import '../../cubits/notes_cubit.dart';
 
 
@@ -18,15 +17,21 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
     return BlocConsumer<NotesCubit, NotesStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = NotesCubit.get(context);
         return SliverAppBar(
           expandedHeight: 220,
-          leading: IconButton(
+          leading:
+          IconButton(
             onPressed: () {
-              cubit.navigateTo(context, const SettingView());
+              NotesCubit.get(context).isSetting = true;
+              showDialog(
+                context: context,
+                builder: (context) => const CustomAlertDialog(),)
+                  .then((value) {});
             },
             icon: const Icon(
               Icons.settings,
+              size: 30,
+              color: Colors.white,
             ),
           ),
           centerTitle: true,

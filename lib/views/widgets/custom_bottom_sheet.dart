@@ -46,13 +46,18 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     maxLine: 5,
                   ),
                   const SizedBox(height: 15),
-                    const Row(
+                     Row(
                     children: [
-                      CustomNoteColorPicker(),
-                      SizedBox(
-                        width: 10,
+                      const CustomNoteColorPicker(),
+                      Container(
+                        height: 30,
+                        width: 1.5,
+                        color: Theme.of(context).dividerColor,
                       ),
-                      CustomReminderSwitch(),
+                      const SizedBox(
+                        width:20,
+                      ),
+                      const CustomReminderSwitch(),
                     ],
                   ),
                   if (cubit.isReminderSwitchOn) ...[

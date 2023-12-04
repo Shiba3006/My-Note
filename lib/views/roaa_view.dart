@@ -2,19 +2,21 @@ import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
 
 class RoaaView extends StatefulWidget {
+  const RoaaView({super.key});
+
   @override
-  _RoaaViewState createState() => _RoaaViewState();
+  State<RoaaView> createState() => _RoaaViewState();
 }
 
 class _RoaaViewState extends State<RoaaView> {
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
         child: SizedBox(
-          height: _width / 2.7 * 2,
-          width: _width / 2.7 * 2,
+          height: width / 2.7 * 2,
+          width: width / 2.7 * 2,
           child: Animator<double>(
             duration: const Duration(milliseconds: 1000),
             cycles: 0,
