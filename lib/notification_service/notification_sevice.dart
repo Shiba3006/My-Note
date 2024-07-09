@@ -33,19 +33,19 @@ class NotificationServices {
           criticalAlerts: true,
           locked: true,
         ),
-        NotificationChannel(
-          channelKey: 'repeating_channel',
-          channelName: 'Repeating notifications',
-          channelDescription:
-              'Notification channel for Repeating notifications',
-          defaultColor: Colors.amber,
-          importance: NotificationImportance.Max,
-          channelShowBadge: true,
-          onlyAlertOnce: true,
-          playSound: true,
-          criticalAlerts: true,
-          locked: true,
-        ),
+        // NotificationChannel(
+        //   channelKey: 'repeating_channel',
+        //   channelName: 'Repeating notifications',
+        //   channelDescription:
+        //       'Notification channel for Repeating notifications',
+        //   defaultColor: Colors.amber,
+        //   importance: NotificationImportance.Max,
+        //   channelShowBadge: true,
+        //   onlyAlertOnce: true,
+        //   playSound: true,
+        //   criticalAlerts: true,
+        //   locked: true,
+        // ),
       ],
       debug: true,
     );
@@ -135,43 +135,45 @@ class NotificationServices {
     );
   }
 
-  static Future<void> createRepeatingNotification(
-    // for repeating reminder
-    String title,
-    String body,
-    int interval,
-  ) async {
-    await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: 88,
-        channelKey: 'repeating_channel',
-        title: title,
-        body: body,
-        notificationLayout: NotificationLayout.Default,
-        badge: _badgeCounter,
-      ),
-      actionButtons: [
-        NotificationActionButton(
-          key: 'MARK_DONE',
-          label: 'Mark Done',
-        ),
-      ],
-      schedule: NotificationInterval(
-        interval: interval,
-        repeats: true,
-        allowWhileIdle: true,
-        preciseAlarm: true,
-        timeZone: AwesomeNotifications.localTimeZoneIdentifier,
-      ),
-    );
-  }
+  // static Future<void> createRepeatingNotification(
+  //   // for repeating reminder
+  //   String title,
+  //   String body,
+  //   int interval,
+  // ) async {
+  //   await AwesomeNotifications().createNotification(
+  //     content: NotificationContent(
+  //       id: 88,
+  //       channelKey: 'repeating_channel',
+  //       title: title,
+  //       body: body,
+  //       notificationLayout: NotificationLayout.Default,
+  //       badge: _badgeCounter,
+  //     ),
+  //     actionButtons: [
+  //       NotificationActionButton(
+  //         key: 'MARK_DONE',
+  //         label: 'Mark Done',
+  //       ),
+  //     ],
+  //     schedule: NotificationInterval(
+  //       interval: interval,
+  //       repeats: true,
+  //       allowWhileIdle: true,
+  //       preciseAlarm: true,
+  //       timeZone: AwesomeNotifications.localTimeZoneIdentifier,
+  //     ),
+  //   );
+  // }
 
   static Future<void> cancelAllNotifications()async {
     await AwesomeNotifications().cancelAll();
   }
+
+  int createUniqueId() {
+  // for Notification UniqueId
+  return DateTime.now().millisecondsSinceEpoch.remainder(10000);
+}
 }
 
-// int createUniqueId() {
-//   // for Notification UniqueId
-//   return DateTime.now().millisecondsSinceEpoch.remainder(10000);
-// }
+

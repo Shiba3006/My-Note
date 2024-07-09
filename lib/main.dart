@@ -21,6 +21,8 @@ void main() async {
   myBox = await Hive.openBox<NoteModel>(notesBox);
   myColorBox = await Hive.openBox<int>(colorBox);
 
+  /// TODO: test unique id
+  NotificationServices().createUniqueId();
   runApp(const MyApp());
 }
 
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: 'Poppins',
               colorScheme: ColorScheme.fromSeed(
-                seedColor: NotesCubit.get(context).currentColor ,
+                seedColor: NotesCubit.get(context).currentColor,
               ),
               useMaterial3: true,
             ),
