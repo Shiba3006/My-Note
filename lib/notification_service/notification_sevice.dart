@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import '../views/notes_view.dart';
@@ -96,7 +98,7 @@ class NotificationServices {
       );
     }
   }
-
+/*
   static Future<void> createScheduleNotification(
     // for schedule reminder
     DateTime dateTime,
@@ -134,7 +136,7 @@ class NotificationServices {
       ),
     );
   }
-
+*/
   // static Future<void> createRepeatingNotification(
   //   // for repeating reminder
   //   String title,
@@ -172,6 +174,7 @@ class NotificationServices {
 
   int createUniqueId() {
   // for Notification UniqueId
+  log('UniqueId: ${DateTime.now().millisecondsSinceEpoch.remainder(10000)}');
   return DateTime.now().millisecondsSinceEpoch.remainder(10000);
 }
 }

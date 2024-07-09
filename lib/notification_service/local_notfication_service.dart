@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
@@ -81,24 +82,25 @@ class LocalNotificationService {
     );
   }
 
-  static Future<void> showScheduleNotification(
-    String title,
-    String body,
-    DateTime scheduledTime,
-  ) async {
+  static Future<void> showScheduleNotification({
+    required String title,
+    required String body,
+    required DateTime dateTime,
+    required TimeOfDay timeOfDay,
+  }) async {
     NotificationDetails scheduleNotificationDetails = _setNotificationDetails(
       'schedule_notification_channel_id',
       'Schedule Notification',
     );
     _initTimeZone();
-    var currentTime = tz.TZDateTime.now(tz.local);
+    // var currentTime = tz.TZDateTime.now(tz.local);
     var scheduleTime = tz.TZDateTime(
       tz.local,
-      currentTime.year,
-      currentTime.month,
-      currentTime.day,
-      currentTime.hour,
-      48,
+      dateTime.year,
+      dateTime.month,
+      dateTime.day,
+      timeOfDay.hour,
+      timeOfDay.minute,
     );
 
     await _flutterLocalNotificationsPlugin.zonedSchedule(

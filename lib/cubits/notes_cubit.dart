@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_note/notification_service/local_notfication_service.dart';
 import 'package:my_note/notification_service/notification_sevice.dart';
 import '../constants/constants.dart';
 import '../models/note_model.dart';
@@ -56,12 +57,12 @@ class NotesCubit extends Cubit<NotesStates> {
         .putAt(
       index,
       NoteModel(
-          title: title,
-          subTitle: subTitle,
-          date: DateTime.now().toString(),
-          color: color,
-          notificationDate: notificationDate,
-          notificationTime: notificationTime,
+        title: title,
+        subTitle: subTitle,
+        date: DateTime.now().toString(),
+        color: color,
+        notificationDate: notificationDate,
+        notificationTime: notificationTime,
       ),
     )
         .then((value) {
@@ -152,8 +153,8 @@ class NotesCubit extends Cubit<NotesStates> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>(); // To activate bottomSheet.
 
-  final GlobalKey<FormState> bottomSheetFormKey = GlobalKey(); // To validate in bottomSheet.
-
+  final GlobalKey<FormState> bottomSheetFormKey =
+      GlobalKey(); // To validate in bottomSheet.
 
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
@@ -196,9 +197,12 @@ class NotesCubit extends Cubit<NotesStates> {
     required String body,
   }) {
     if (date != null && time != null) {
-      NotificationServices.createScheduleNotification(
-              dateTime, timeOfDay, title, body)
-          .then((value) {
+      LocalNotificationService.showScheduleNotification(
+        title: title,
+        body: body,
+        dateTime: dateTime,
+        timeOfDay: timeOfDay,
+      ).then((value) {
         // createRepeatingNotification(
         //   title: title,
         //   body: body,
@@ -214,7 +218,7 @@ class NotesCubit extends Cubit<NotesStates> {
   void deleteScheduleNotification() {
     NotificationServices.cancelAllNotifications().then((value) {
       emit(NotificationsDeletedSuccessState());
-    }).catchError((err){
+    }).catchError((err) {
       emit(NotificationDeletedFailureState(err.toString()));
     });
   }
