@@ -216,7 +216,7 @@ class NotesCubit extends Cubit<NotesStates> {
   }
 
   void deleteScheduleNotification() {
-    NotificationServices.cancelAllNotifications().then((value) {
+    LocalNotificationService.cancelAllNotifications().then((value) {
       emit(NotificationsDeletedSuccessState());
     }).catchError((err) {
       emit(NotificationDeletedFailureState(err.toString()));

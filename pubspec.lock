@@ -41,22 +41,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.11.0"
-  awesome_notifications:
-    dependency: "direct main"
-    description:
-      name: awesome_notifications
-      sha256: d9e46ce7f5171ee1e9b1c5bc6dc40bd77528561f592842ce97ce3a0a9ae155ef
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.9.3+1"
-  awesome_notifications_core:
-    dependency: "direct main"
-    description:
-      name: awesome_notifications_core
-      sha256: "0d67f3539aac87f9052b9eb204bdfbd00893a9d83b5975151098265428332bea"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.8.1"
   bloc:
     dependency: "direct main"
     description:
@@ -309,11 +293,6 @@ packages:
     version: "0.0.0"
   flutter_test:
     dependency: "direct dev"
-    description: flutter
-    source: sdk
-    version: "0.0.0"
-  flutter_web_plugins:
-    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"

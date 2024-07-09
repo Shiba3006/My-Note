@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
-import 'package:my_note/hive/hive_service.dart';
+
 import 'package:my_note/notification_service/local_notfication_service.dart';
 import 'package:my_note/views/notes_view.dart';
 import 'constants/constants.dart';
@@ -15,15 +15,17 @@ void main() async {
 
   Bloc.observer = MyBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
+  
   await Future.wait([
     Hive.initFlutter(),
-    NotificationServices.initializeNotification(),
+    // NotificationServices.initializeNotification(),
     LocalNotificationService.init(),
-    HiveService.init(),
   ]);
+  myBox = await Hive.openBox<NoteModel>(notesBox);
+  myColorBox = await Hive.openBox<int>(colorBox);
 
   /// TODO: test unique id
-  NotificationServices().createUniqueId();
+  LocalNotificationService.createUniqueId();
   runApp(const MyApp());
 }
 

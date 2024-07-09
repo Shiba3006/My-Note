@@ -29,8 +29,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animator: ^3.3.0
-  awesome_notifications: any
-  awesome_notifications_core: ^0.8.0
+  # awesome_notifications: any
+  # awesome_notifications_core: ^0.8.0
   bloc: ^8.0.0
   cupertino_icons: ^1.0.2
   flutter:

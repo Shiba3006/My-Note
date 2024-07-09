@@ -182,4 +182,10 @@ class LocalNotificationService {
   static Future<void> cancelAllNotifications() async {
     await _flutterLocalNotificationsPlugin.cancelAll();
   }
+
+  static int createUniqueId() {
+    // for Notification UniqueId
+    log('UniqueId: ${DateTime.now().millisecondsSinceEpoch.remainder(10000)}');
+    return DateTime.now().millisecondsSinceEpoch.remainder(10000);
+  }
 }
