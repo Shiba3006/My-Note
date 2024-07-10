@@ -78,7 +78,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                           firstDate: DateTime.now(),
                           lastDate: DateTime(3000),
                         ).then((value) {
-                          cubit.setDate(newDate: value!);
+                          cubit.setDate(newDate: value ?? DateTime.now());
                         });
                       },
                       controller:
@@ -91,7 +91,10 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                           context: context,
                           initialTime: TimeOfDay.now(),
                         ).then((value) {
-                          cubit.setTime(newTime: value!, context: context);
+                          cubit.setTime(
+                            newTime: value ?? TimeOfDay.now(),
+                            context: context,
+                          );
                         });
                       },
                       controller:

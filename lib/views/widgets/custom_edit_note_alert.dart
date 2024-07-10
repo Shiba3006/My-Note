@@ -14,7 +14,6 @@ class CustomEditNoteAlert extends StatefulWidget {
 }
 
 class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
-
   final GlobalKey<FormState> noteFormKey = GlobalKey();
 
   @override
@@ -38,9 +37,7 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                     onSaved: (value) {
                       cubit.title = value;
                     }),
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
                 CustomTextFormField(
                   initialValue: cubit.notesList[widget.index].subTitle,
                   prefixIcon: Icons.subject,
@@ -52,9 +49,7 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                 ),
                 const SizedBox(height: 15),
                 if (cubit.notesList[widget.index].notificationDate != null) ...[
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   CustomTextFormField(
                     initialValue:
                         cubit.notesList[widget.index].notificationDate,
@@ -70,7 +65,7 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                         firstDate: DateTime.now(),
                         lastDate: DateTime(3000),
                       ).then((value) {
-                        cubit.setDate(newDate: value!);
+                        cubit.setDate(newDate: value !);
                       });
                     },
                   ),
@@ -121,10 +116,10 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                   text: 'Update',
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 15
                 ),
                 CustomButton(
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                   text: 'Cancel',

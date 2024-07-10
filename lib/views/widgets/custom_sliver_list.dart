@@ -14,8 +14,7 @@ class CustomSliverList extends StatefulWidget {
 class _CustomSliverListState extends State<CustomSliverList> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NotesCubit, NotesStates>(
-      listener: (context, state) {},
+    return BlocBuilder<NotesCubit, NotesStates>(
       builder: (context, state) {
         return SliverPadding(
           padding: const EdgeInsets.all(8.0),

@@ -8,8 +8,7 @@ class CustomReminderSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NotesCubit, NotesStates>(
-      listener: (context, state) {},
+    return BlocBuilder<NotesCubit, NotesStates>(
       builder: (context, state) {
         var cubit = NotesCubit.get(context);
         return Expanded(

@@ -28,8 +28,9 @@ class _CustomFabState extends State<CustomFab> {
     return FloatingActionButton(
       child: cubit.fabIcon,
       onPressed: () {
+        int id =  DateTime.now().millisecondsSinceEpoch.remainder(10000);
         if (cubit.isBottomSheetOpen) {
-          int id =  DateTime.now().millisecondsSinceEpoch.remainder(10000);
+          
           if (cubit.bottomSheetFormKey.currentState!.validate()) {
             cubit.bottomSheetFormKey.currentState!.save();
             cubit.addNote(
@@ -52,7 +53,7 @@ class _CustomFabState extends State<CustomFab> {
               );
             }
           } else {
-            cubit.autoValidateMode = AutovalidateMode.always;
+            cubit.autoValidateMode = AutovalidateMode.onUserInteraction;
           }
         } else {
           cubit.changeBottomSheetState(

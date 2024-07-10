@@ -158,7 +158,7 @@ class NotesCubit extends Cubit<NotesStates> {
   final GlobalKey<FormState> bottomSheetFormKey =
       GlobalKey(); // To validate in bottomSheet.
 
-  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+  AutovalidateMode autoValidateMode = AutovalidateMode.always;
   String? title, subTitle;
   Color? noteColor;
 
