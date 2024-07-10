@@ -1,7 +1,7 @@
 import 'dart:developer';
+
 import 'package:my_note/notification_service/local_notfication_service.dart';
 import 'package:workmanager/workmanager.dart';
-
 
 class WorkManagerService {
   Future<void> _registerTask() async {
@@ -22,13 +22,16 @@ class WorkManagerService {
   }
 
   Future<void> cancelTask(String uniqueName) async {
+    
     await Workmanager().cancelByUniqueName(uniqueName);
   }
+
+  
 }
 
 @pragma('vm:entry-point')
 void _actionTask() {
-  Workmanager().executeTask((taskName, inputData) async{
+  Workmanager().executeTask((taskName, inputData) async {
     log('Task $taskName is running! inputData: $inputData');
     await LocalNotificationService.showDailyNotification(
       'Daily Notification',

@@ -1,8 +1,8 @@
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_note/notification_service/local_notfication_service.dart';
-import 'package:my_note/notification_service/notification_sevice.dart';
 import '../constants/constants.dart';
 import '../models/note_model.dart';
 
@@ -49,14 +49,17 @@ class NotesCubit extends Cubit<NotesStates> {
     required String title,
     required String subTitle,
     required int color,
+    required int id,
     String? notificationDate,
     String? notificationTime,
   }) {
     emit(UpdateNoteLoadingState());
+    
     myBox
         .putAt(
       index,
       NoteModel(
+        id: id,
         title: title,
         subTitle: subTitle,
         date: DateTime.now().toString(),
@@ -74,12 +77,12 @@ class NotesCubit extends Cubit<NotesStates> {
     });
   }
 
-  void deleteNote({required int index}) {
+  void deleteNote({required int index, required int id}) {
     emit(DeleteNoteLoadingState());
     myBox.deleteAt(index).then((value) {
       emit(DeleteNoteSuccessState());
       getNotes();
-      deleteScheduleNotification();
+      _deleteNotification(id: id);
     }).catchError((err) {
       emit(DeleteNoteFailureState(err.toString()));
     });
@@ -203,11 +206,6 @@ class NotesCubit extends Cubit<NotesStates> {
         dateTime: dateTime,
         timeOfDay: timeOfDay,
       ).then((value) {
-        // createRepeatingNotification(
-        //   title: title,
-        //   body: body,
-        //   interval: 60,
-        // );
         emit(ScheduleNotificationCreatedSuccessState());
       }).catchError((err) {
         emit(ScheduleNotificationCreatedFailureState(err.toString()));
@@ -215,11 +213,19 @@ class NotesCubit extends Cubit<NotesStates> {
     }
   }
 
-  void deleteScheduleNotification() {
-    LocalNotificationService.cancelAllNotifications().then((value) {
+  void _deleteNotification({
+    required int id,
+  }) {
+    LocalNotificationService.cancelNotification(id).then((value) {
       emit(NotificationsDeletedSuccessState());
     }).catchError((err) {
       emit(NotificationDeletedFailureState(err.toString()));
     });
+  }
+
+  static int _createUniqueId() {
+    // for Notification UniqueId
+    
+    return DateTime.now().millisecondsSinceEpoch.remainder(10000);
   }
 }

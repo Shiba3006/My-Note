@@ -8,24 +8,20 @@ import 'package:my_note/views/notes_view.dart';
 import 'constants/constants.dart';
 import 'cubits/bloc_observer.dart';
 import 'models/note_model.dart';
-import 'notification_service/notification_sevice.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
-  
+
   await Future.wait([
     Hive.initFlutter(),
-    // NotificationServices.initializeNotification(),
     LocalNotificationService.init(),
   ]);
   myBox = await Hive.openBox<NoteModel>(notesBox);
   myColorBox = await Hive.openBox<int>(colorBox);
 
-  /// TODO: test unique id
-  LocalNotificationService.createUniqueId();
   runApp(const MyApp());
 }
 

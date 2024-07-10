@@ -29,10 +29,12 @@ class _CustomFabState extends State<CustomFab> {
       child: cubit.fabIcon,
       onPressed: () {
         if (cubit.isBottomSheetOpen) {
+          int id =  DateTime.now().millisecondsSinceEpoch.remainder(10000);
           if (cubit.bottomSheetFormKey.currentState!.validate()) {
             cubit.bottomSheetFormKey.currentState!.save();
             cubit.addNote(
                 notesModel: NoteModel(
+                  id: id,
                   title: cubit.title!,
                   subTitle: cubit.subTitle!,
                   date: NotesCubit.get(context).customizeDateNowFormat(),

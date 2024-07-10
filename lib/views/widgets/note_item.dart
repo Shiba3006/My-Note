@@ -3,10 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 
+
 import 'custom_edit_note_alert.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key, required this.index});
+  const NoteItem({
+    super.key,
+    required this.index,
+  });
 
   final int index;
 
@@ -53,7 +57,10 @@ class NoteItem extends StatelessWidget {
                     ),
                     trailing: IconButton(
                       onPressed: () {
-                        cubit.deleteNote(index: index);
+                        cubit.deleteNote(
+                          index: index,
+                          id: cubit.notesList[index].id,
+                        );
                       },
                       icon: const Icon(
                         FontAwesomeIcons.trash,

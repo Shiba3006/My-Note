@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 // for generated Hive file
 part 'note_model.g.dart';
 
-// flutter packages pub run build_runner build --> terminal code fro generation.
+//  --> terminal code for generation.
 
 @HiveType(typeId: 0) // hive
 class NoteModel extends HiveObject {
@@ -19,13 +19,16 @@ class NoteModel extends HiveObject {
   String? notificationDate;
   @HiveField(5)
   String? notificationTime;
+  @HiveField(6)
+  final int id;
 
-  NoteModel({
+  NoteModel( {
     required this.title,
     required this.subTitle,
     required this.date,
     required this.color,
     this.notificationDate,
     this.notificationTime,
+    required this.id,
   });
 }

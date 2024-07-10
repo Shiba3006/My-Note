@@ -102,6 +102,7 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                   onPressed: () {
                     noteFormKey.currentState!.save();
                     cubit.updateNote(
+                      id: cubit.notesList[widget.index].id,
                       index: widget.index,
                       title: cubit.title!,
                       subTitle: cubit.subTitle!,
