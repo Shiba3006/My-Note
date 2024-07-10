@@ -7,7 +7,9 @@ class NotesInitialStates extends NotesStates {}
 
 // add note
 class AddNoteLoadingState extends NotesStates {}
+
 class AddNoteSuccessState extends NotesStates {}
+
 class AddNoteFailureState extends NotesStates {
   final String err;
 
@@ -16,7 +18,9 @@ class AddNoteFailureState extends NotesStates {
 
 // get note
 class GetNoteLoadingState extends NotesStates {}
+
 class GetNoteSuccessState extends NotesStates {}
+
 class GetNoteFailureState extends NotesStates {
   final String err;
 
@@ -25,7 +29,9 @@ class GetNoteFailureState extends NotesStates {
 
 // update note
 class UpdateNoteLoadingState extends NotesStates {}
+
 class UpdateNoteSuccessState extends NotesStates {}
+
 class UpdateNoteFailureState extends NotesStates {
   final String err;
 
@@ -34,7 +40,9 @@ class UpdateNoteFailureState extends NotesStates {
 
 // delete note
 class DeleteNoteLoadingState extends NotesStates {}
+
 class DeleteNoteSuccessState extends NotesStates {}
+
 class DeleteNoteFailureState extends NotesStates {
   final String err;
 
@@ -43,6 +51,7 @@ class DeleteNoteFailureState extends NotesStates {
 
 // change app color and save it in hive box
 class ChangeAppColorSuccessState extends NotesStates {}
+
 class ChangeAppColorFailureState extends NotesStates {
   final String err;
 
@@ -59,6 +68,7 @@ class ChangeAppColorFailureState extends NotesStates {
 
 // get app saved color from hive box
 class GetAppColorSuccessState extends NotesStates {}
+
 class GetAppColorFailureState extends NotesStates {
   final String err;
 
@@ -67,6 +77,7 @@ class GetAppColorFailureState extends NotesStates {
 
 // navigator
 class NavigateToSuccessState extends NotesStates {}
+
 class NavigateToSuccessFailure extends NotesStates {
   final String err;
 
@@ -75,6 +86,7 @@ class NavigateToSuccessFailure extends NotesStates {
 
 // change picker color color
 class ChangePickerColorSuccessState extends NotesStates {}
+
 class ChangePickerColorFailureState extends NotesStates {
   final String err;
 
@@ -89,8 +101,11 @@ class BottomSheetChangedSuccessState extends NotesStates {}
 
 class ChangeColorSuccessState extends NotesStates {}
 
-// change Switch state
-class ChangeSwitchSuccessState extends NotesStates {}
+// change reminder Switch state
+class ChangeReminderSwitchSuccessState extends NotesStates {}
+
+// change repeater Switch state
+class ChangeRepeaterSwitchSuccessState extends NotesStates {}
 
 // change Reminder Switch state
 class ChangeRepeatSuccessState extends NotesStates {}
@@ -112,6 +127,7 @@ class TimeChangedSuccessState extends NotesStates {}
 
 // create schedule notification
 class ScheduleNotificationCreatedSuccessState extends NotesStates {}
+
 class ScheduleNotificationCreatedFailureState extends NotesStates {
   final String err;
 
@@ -120,6 +136,7 @@ class ScheduleNotificationCreatedFailureState extends NotesStates {
 
 // create repeat notification
 class RepeatNotificationCreatedSuccessState extends NotesStates {}
+
 class RepeatNotificationCreatedFailureState extends NotesStates {
   final String err;
 
@@ -128,6 +145,7 @@ class RepeatNotificationCreatedFailureState extends NotesStates {
 
 // delete notifications
 class NotificationsDeletedSuccessState extends NotesStates {}
+
 class NotificationDeletedFailureState extends NotesStates {
   final String err;
 

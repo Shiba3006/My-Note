@@ -49,16 +49,16 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     maxLine: 5,
                   ),
                   const SizedBox(height: 15),
-                  const Row(
+                  Row(
                     children: [
-                      CustomNoteColorPicker(),
-                      CustomDivider(),
-                      SizedBox(width: 20),
-                      CustomReminderSwitch(),
-                      SizedBox(width: 20),
-                      CustomDivider(),
-                      SizedBox(width: 20),
-                      CustomRepeatSwitch(),
+                      const CustomNoteColorPicker(),
+                      const CustomDivider(),
+                      const SizedBox(width: 10),
+                      const CustomReminderSwitch(),
+                      const SizedBox(width: 10),
+                      const CustomDivider(),
+                      const SizedBox(width: 10),
+                      if (cubit.isReminderSwitchOn) const CustomRepeatSwitch(),
                     ],
                   ),
                   if (cubit.isReminderSwitchOn) ...[
@@ -103,8 +103,10 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       },
                     ),
                     const SizedBox(height: 15),
-                    const CustomRepeatSlider(),
-                    const SizedBox(height: 15),
+                    if (cubit.isRepeaterSwitchOn) ...[
+                      const CustomRepeatSlider(),
+                      const SizedBox(height: 15),
+                    ],
                   ],
                 ],
               ),

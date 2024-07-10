@@ -17,7 +17,7 @@ class CustomReminderSwitch extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Set reminder:',
+                  'Reminder:',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ),
@@ -26,7 +26,7 @@ class CustomReminderSwitch extends StatelessWidget {
                 child: Switch(
                   value: cubit.isReminderSwitchOn,
                   onChanged: (value) {
-                    cubit.changeSwitchState(value: value);
+                    cubit.changeReminderSwitchState(value: value);
                   },
                 ),
               ),

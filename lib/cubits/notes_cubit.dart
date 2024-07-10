@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,7 +53,7 @@ class NotesCubit extends Cubit<NotesStates> {
     String? notificationTime,
   }) {
     emit(UpdateNoteLoadingState());
-    
+
     myBox
         .putAt(
       index,
@@ -164,10 +163,16 @@ class NotesCubit extends Cubit<NotesStates> {
   Color? noteColor;
 
   bool isReminderSwitchOn = false;
+  bool isRepeaterSwitchOn = false;
 
-  void changeSwitchState({required bool value}) {
+  void changeReminderSwitchState({required bool value}) {
     isReminderSwitchOn = value;
-    emit(ChangeSwitchSuccessState());
+    emit(ChangeReminderSwitchSuccessState());
+  }
+
+  void changeRepeaterSwitchState({required bool value}) {
+    isRepeaterSwitchOn = value;
+    emit(ChangeRepeaterSwitchSuccessState());
   }
 
   TextEditingController dateController = TextEditingController();
@@ -225,7 +230,7 @@ class NotesCubit extends Cubit<NotesStates> {
 
   static int _createUniqueId() {
     // for Notification UniqueId
-    
+
     return DateTime.now().millisecondsSinceEpoch.remainder(10000);
   }
 }
