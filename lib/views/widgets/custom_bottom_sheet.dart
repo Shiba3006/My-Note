@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 import 'package:my_note/views/widgets/custom_divider.dart';
+import 'package:my_note/views/widgets/custom_repeat_slider.dart';
+import 'package:my_note/views/widgets/custom_repeat_switch.dart';
 import 'custom_note_color_picker.dart';
 import 'custom_reminder_switch.dart';
 import 'custom_text_form_field.dart';
@@ -51,10 +53,12 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     children: [
                       CustomNoteColorPicker(),
                       CustomDivider(),
-                      SizedBox(
-                        width: 20,
-                      ),
+                      SizedBox(width: 20),
                       CustomReminderSwitch(),
+                      SizedBox(width: 20),
+                      CustomDivider(),
+                      SizedBox(width: 20),
+                      CustomRepeatSwitch(),
                     ],
                   ),
                   if (cubit.isReminderSwitchOn) ...[
@@ -80,9 +84,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       controller:
                           cubit.date == null ? null : cubit.dateController,
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     CustomTextFormField(
                       onTap: () {
                         showTimePicker(
@@ -100,6 +102,9 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                         cubit.timeString = value;
                       },
                     ),
+                    const SizedBox(height: 15),
+                    const CustomRepeatSlider(),
+                    const SizedBox(height: 15),
                   ],
                 ],
               ),

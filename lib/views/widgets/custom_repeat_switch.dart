@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/notes_cubit.dart';
-
-class CustomReminderSwitch extends StatelessWidget {
-  const CustomReminderSwitch({super.key});
+class CustomRepeatSwitch extends StatelessWidget {
+  const CustomRepeatSwitch({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NotesCubit, NotesStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        var cubit = NotesCubit.get(context);
-        return Expanded(
+     return Expanded(
           child: Row(
             children: [
               Expanded(
@@ -24,16 +17,15 @@ class CustomReminderSwitch extends StatelessWidget {
               const SizedBox(width: 2),
               Expanded(
                 child: Switch(
-                  value: cubit.isReminderSwitchOn,
+                  value: false,
                   onChanged: (value) {
-                    cubit.changeSwitchState(value: value);
+                    // cubit.changeSwitchState(value: value);
                   },
                 ),
               ),
             ],
           ),
         );
-      },
-    );
+      
   }
 }
