@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_note/cubits/notes_cubit.dart';
 
-
 import 'custom_edit_note_alert.dart';
 
 class NoteItem extends StatelessWidget {
@@ -21,12 +20,13 @@ class NoteItem extends StatelessWidget {
       builder: (context, state) {
         var cubit = NotesCubit.get(context);
         return InkWell(
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (context) => CustomEditNoteAlert(
-                      index: index,
-                    )).then((value) {});
+          onTap: () async {
+            await showDialog(
+              context: context,
+              builder: (context) => CustomEditNoteAlert(
+                index: index,
+              ),
+            );
           },
           child: Container(
             decoration: BoxDecoration(

@@ -6,12 +6,13 @@ import 'package:my_note/views/widgets/notes_view_body.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class NotesView extends StatelessWidget {
-  const NotesView({super.key,});
+  const NotesView({
+    super.key,
+  });
 
   static final GlobalKey<NavigatorState> navigatorKey =
-  GlobalKey<NavigatorState>();
+      GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,8 @@ class NotesView extends StatelessWidget {
         return Scaffold(
           key: cubit.scaffoldKey,
           floatingActionButton: const Opacity(
-              opacity: .5,
-              child: CustomFab(),
+            opacity: .8,
+            child: CustomFab(),
           ),
           body: const NotesViewBody(),
         );
