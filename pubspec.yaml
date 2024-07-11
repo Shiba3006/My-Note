@@ -42,7 +42,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   timezone: ^0.9.4
-  workmanager: ^0.5.2
+  # workmanager: ^0.5.2
 
 dev_dependencies:
   build_runner: ^2.4.6
