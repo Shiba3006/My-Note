@@ -59,26 +59,32 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                       cubit.dateString = value;
                     },
                     onTap: () {
+                      // convert string to date
+                      DateTime date = DateTime.parse(
+                          cubit.notesList[widget.index].notificationDate!);
                       showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
                         firstDate: DateTime.now(),
                         lastDate: DateTime(3000),
                       ).then((value) {
-                        cubit.setDate(newDate: value !);
+                        cubit.setDate(newDate: value ?? date);
                       });
                     },
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15),
                   CustomTextFormField(
                     onTap: () {
                       showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.now(),
                       ).then((value) {
-                        cubit.setTime(newTime: value!, context: context);
+                        cubit.setTime(
+                          newTime: value ??
+                              cubit.parseTimeOfDay(cubit
+                                  .notesList[widget.index].notificationTime!),
+                          context: context,
+                        );
                       });
                     },
                     initialValue:
@@ -90,9 +96,7 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                     },
                   ),
                 ],
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
                 CustomButton(
                   onPressed: () {
                     noteFormKey.currentState!.save();
@@ -115,9 +119,7 @@ class _CustomEditNoteAlertState extends State<CustomEditNoteAlert> {
                   },
                   text: 'Update',
                 ),
-                const SizedBox(
-                  height: 15
-                ),
+                const SizedBox(height: 15),
                 CustomButton(
                   onPressed: () {
                     Navigator.pop(context);

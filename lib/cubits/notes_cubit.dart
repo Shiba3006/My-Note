@@ -186,7 +186,6 @@ class NotesCubit extends Cubit<NotesStates> {
     date = newDate;
     dateString = formatDate(date: date!);
     dateController.text = dateString!;
-    debugPrint(dateString);
     emit(DateSetSuccessState());
   }
 
@@ -230,7 +229,34 @@ class NotesCubit extends Cubit<NotesStates> {
 
   static int _createUniqueId() {
     // for Notification UniqueId
-
     return DateTime.now().millisecondsSinceEpoch.remainder(10000);
+  }
+
+  TimeOfDay parseTimeOfDay(String time) {
+    final List<String> parts = time.split(' ');
+    if (parts.length != 2) {
+      throw const FormatException('Invalid time format. Use hh:mm a');
+    }
+
+    final List<String> timeParts = parts[0].split(':');
+    if (timeParts.length != 2) {
+      throw const FormatException('Invalid time format. Use hh:mm a');
+    }
+
+    final int hour = int.parse(timeParts[0]);
+    final int minute = int.parse(timeParts[1]);
+    final String periodString = parts[1].toUpperCase(); // Get AM/PM
+
+    if (hour < 1 ||
+        hour > 12 ||
+        minute < 0 ||
+        minute > 59 ||
+        (periodString != 'AM' && periodString != 'PM')) {
+      throw const FormatException(
+          'Invalid time values. Hour should be between 1 and 12, minute between 0 and 59, and period should be AM or PM.');
+    }
+
+    // Corrected part: Use the correct parameter name in the TimeOfDay constructor
+    return TimeOfDay(hour: hour, minute: minute);
   }
 }
